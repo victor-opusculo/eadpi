@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base
+{
+    *::selection { @apply bg-emerald-700 text-white dark:bg-emerald-200 dark:text-black }
+    * { font-family: sans-serif; }
+    h1 { @apply uppercase font-bold text-4xl my-8 text-center dark:text-white }
+    h2 { @apply font-bold text-3xl my-4 text-center dark:text-white }
+
+    body { @apply bg-white text-black dark:bg-zinc-900 dark:text-white transition-colors }
+
+    table { @apply w-full }
+    table tbody tr { @apply border-b border-neutral-300 }
+    table th { @apply text-center text-xl font-bold }
+    table td { @apply text-left text-lg }
+
+    input[type='text'], input[type='password'], input[type='email'], input[type='search'], input[type='date'], textarea, select
+    {
+        @apply border border-neutral-700 rounded p-1 dark:bg-zinc-950 dark:border-neutral-500 dark:text-white
+    }
+}
+
+@layer components
+{
+    .btn { @apply bg-green-700 hover:bg-green-800 active:bg-green-900 px-2 py-1 text-white rounded border border-green-900 min-w-[100px] text-center dark:bg-green-800 dark:hover:bg-green-900 dark:active:bg-green-950 }
+
+    .link { @apply text-green-700 mx-2 hover:text-green-800 hover:underline active:text-green-900 }
+
+    .pagination { @apply block my-2 list-none text-lg ml-4 }
+    .pagination li { @apply inline mx-1 }
+    .pagination .currentPageNum { @apply font-bold }
+
+    .fieldset { @apply border border-2 rounded-md p-2 m-2 }
+
+    .responsibleTable { @apply block lg:table w-full }
+    .responsibleTable thead { @apply block lg:table-header-group }
+    .responsibleTable th { @apply absolute hidden lg:table-cell lg:relative }
+    .responsibleTable tbody { @apply block lg:table-row-group }
+    .responsibleTable tr { @apply block py-4 lg:py-2 lg:table-row }
+    .responsibleTable td { @apply block lg:table-cell before:font-bold before:content-[attr(data-th)':_'] lg:before:content-none }
+}
+
+html { scroll-behavior: smooth; font-size: 18px;}

@@ -1,0 +1,48 @@
+{
+    "name": "victor-opusculo/eadpi",
+    "description": "Plataforma EAD simples para a Escola do Parlamento de Itapevi.",
+    "type": "project",
+	"config": {
+        "platform": {
+            "php": "8.1"
+        }
+    },
+    "require-dev": {
+        "robmorgan/phinx": "*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Victor Opusculo"
+        }
+    ],
+    "minimum-stability": "dev",
+	"prefer-stable": true,
+    "require": 
+	{
+		"victor-opusculo/p-comp": "@dev",
+        "phpmailer/phpmailer": "^6.8"
+    },
+	"autoload": {
+        "files":
+        [
+            "lib/Helpers/Data.php",
+            "lib/Helpers/QueryString.php",
+            "lib/Helpers/System.php",
+            "lib/Helpers/URLGenerator.php"
+        ],
+        "psr-4": {
+            "VOpus\\PhpOrm\\": "VOpusPhpOrm/",
+            "VictorOpusculo\\Eadpi\\App\\": "app/",
+            "VictorOpusculo\\Eadpi\\Components\\": "components/"
+        }
+    },
+	"repositories":
+	[
+		{
+			"type": "path",
+			"url": "../../../Users/Victor/source/php/PComp",
+			"options": { "symlink": true }
+		}
+	]
+}
