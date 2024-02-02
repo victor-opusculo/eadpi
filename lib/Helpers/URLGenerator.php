@@ -8,7 +8,7 @@ final class URLGenerator
 	public static ?bool $useFriendlyUrls = null;
 	public const BASE_URL = '/eadpi';
 	
-	private static function loadConfigs() : void
+	public static function loadConfigs() : void
 	{
 		if (isset(self::$useFriendlyUrls)) return;
 

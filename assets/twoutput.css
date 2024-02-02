@@ -708,8 +708,8 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   position: sticky;
 }
 
-.top-0 {
-  top: 0px;
+.bottom-\[100px\] {
+  bottom: 100px;
 }
 
 .left-0 {
@@ -720,8 +720,8 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   right: 0px;
 }
 
-.bottom-\[100px\] {
-  bottom: 100px;
+.top-0 {
+  top: 0px;
 }
 
 .z-10 {
@@ -767,10 +767,6 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   display: flex;
 }
 
-.h-\[150px\] {
-  height: 150px;
-}
-
 .h-\[100px\] {
   height: 100px;
 }
@@ -783,48 +779,16 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   height: 80px;
 }
 
-.h-\[90px\] {
-  height: 90px;
-}
-
-.h-\[120px\] {
-  height: 120px;
-}
-
-.min-h-\[calc\(100vh-200px\)\] {
-  min-height: calc(100vh - 200px);
-}
-
-.min-h-\[calc\(100vh-100px\)\] {
-  min-height: calc(100vh - 100px);
-}
-
-.min-h-\[calc\(100vh-150px\)\] {
-  min-height: calc(100vh - 150px);
-}
-
-.min-h-\[calc\(100vh-180px\)\] {
-  min-height: calc(100vh - 180px);
-}
-
-.min-h-\[calc\(100vh-230px\)\] {
-  min-height: calc(100vh - 230px);
-}
-
-.min-h-\[calc\(100vh-280px\)\] {
-  min-height: calc(100vh - 280px);
-}
-
-.min-h-\[calc\(100vh-300px\)\] {
-  min-height: calc(100vh - 300px);
-}
-
-.min-h-\[calc\(100vh-290px\)\] {
-  min-height: calc(100vh - 290px);
-}
-
 .min-h-\[calc\(100vh-295px\)\] {
   min-height: calc(100vh - 295px);
+}
+
+.w-\[230px\] {
+  width: 230px;
+}
+
+.w-\[250px\] {
+  width: 250px;
 }
 
 .w-\[400px\] {
@@ -833,26 +797,6 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
 
 .w-full {
   width: 100%;
-}
-
-.w-\[100px\] {
-  width: 100px;
-}
-
-.w-auto {
-  width: auto;
-}
-
-.w-\[200px\] {
-  width: 200px;
-}
-
-.w-\[250px\] {
-  width: 250px;
-}
-
-.w-\[230px\] {
-  width: 230px;
 }
 
 .max-w-52 {
@@ -913,36 +857,25 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }
 
-.bg-\[url\(\'\/assets\/pics\/rodape-transp\.png\'\)\] {
-  background-image: url('/assets/pics/rodape-transp.png');
-}
-
-.bg-\[url\(\'assets\/pics\/rodape-transp\.png\'\)\] {
-  background-image: url('assets/pics/rodape-transp.png');
-}
-
-.bg-\[url\(\'pics\/rodape-transp\.png\'\)\] {
-  background-image: url('pics/rodape-transp.png');
-}
-
-.bg-\[url\(\'pics\/epi\.png\'\)\] {
-  background-image: url('pics/epi.png');
+.bg-neutral-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 229 229 / var(--tw-bg-opacity));
 }
 
 .bg-\[url\(\'pics\/cmi\.png\'\)\] {
   background-image: url('pics/cmi.png');
 }
 
+.bg-\[url\(\'pics\/epi\.png\'\)\] {
+  background-image: url('pics/epi.png');
+}
+
+.bg-\[url\(\'pics\/rodape-transp\.png\'\)\] {
+  background-image: url('pics/rodape-transp.png');
+}
+
 .bg-contain {
   background-size: contain;
-}
-
-.bg-cover {
-  background-size: cover;
-}
-
-.bg-auto {
-  background-size: auto;
 }
 
 .bg-bottom {
@@ -1031,12 +964,22 @@ html {
   background-color: rgb(20 83 45 / 0.4);
 }
 
-:is(.dark .dark\:bg-\[url\(\'pics\/epi_white\.png\'\)\]) {
-  background-image: url('pics/epi_white.png');
+:is(.dark .dark\:bg-neutral-700) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(64 64 64 / var(--tw-bg-opacity));
+}
+
+:is(.dark .dark\:bg-neutral-800) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(38 38 38 / var(--tw-bg-opacity));
 }
 
 :is(.dark .dark\:bg-\[url\(\'pics\/cmi_white\.png\'\)\]) {
   background-image: url('pics/cmi_white.png');
+}
+
+:is(.dark .dark\:bg-\[url\(\'pics\/epi_white\.png\'\)\]) {
+  background-image: url('pics/epi_white.png');
 }
 
 :is(.dark .dark\:text-white) {

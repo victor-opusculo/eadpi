@@ -24,7 +24,7 @@ class NavBar extends Component
             [
                 component(NavBarItem::class, url: URLGenerator::generatePageUrl('/'), label: 'Início'),
                 component(NavBarItem::class, url: URLGenerator::generatePageUrl('/courses'), label: 'Cursos'),
-                component(NavBarItem::class, url: URLGenerator::generatePageUrl('/student_panel'), label: 'Meu aprendizado')
+                component(NavBarItem::class, url: URLGenerator::generatePageUrl('/students/panel'), label: 'Meu aprendizado')
             ]),
             component(DarkModeToggler::class)
         ]);

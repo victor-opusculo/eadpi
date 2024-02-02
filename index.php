@@ -8,15 +8,23 @@ require_once "vendor/autoload.php";
 
 $app = new AppInitializer(require_once __DIR__ . '/app/ns.php');
 
+URLGenerator::loadConfigs();
+
 ?><!DOCTYPE HTML>
 <html>
 	<head>
 		<!-- Desenvolvido por Victor Opusculo -->
 		<script>
+			const useFriendlyUrls = <?= URLGenerator::$useFriendlyUrls ? 'true' : 'false' ?>;
+			const baseUrl = '<?= URLGenerator::BASE_URL ?>';
+			const EADPI = {};
+
 			if (window.localStorage.darkMode === '1')
 				document.documentElement.classList.add("dark");
 		</script>
-		<!--<script src="./clientComponents/dist/index.js" type="module"></script>-->
+		<script src="<?= URLGenerator::generateFileUrl('assets/script/AlertManager.js') ?>"></script>
+		<script src="<?= URLGenerator::generateFileUrl('assets/script/URLGenerator.js') ?>"></script>
+		<script src="<?= URLGenerator::generateFileUrl('client-components/dist/index.js') ?>" type="module"></script>
 		<meta charset="utf8"/>
 		<meta content="width=device-width, initial-scale=1" name="viewport" />
 		<meta name="description" content="Plataforma EAD da Escola do Parlamento de Itapevi">

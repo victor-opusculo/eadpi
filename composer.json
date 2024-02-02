@@ -34,6 +34,7 @@
         "psr-4": {
             "VOpus\\PhpOrm\\": "VOpusPhpOrm/",
             "VictorOpusculo\\Eadpi\\App\\": "app/",
+            "VictorOpusculo\\Eadpi\\Api\\": "api/",
             "VictorOpusculo\\Eadpi\\Components\\": "components/"
         }
     },
