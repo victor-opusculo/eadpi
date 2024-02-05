@@ -25,52 +25,27 @@
     };
 
   
-    const state = 
-    { 
-        password: "",
-        email: "" 
-    };
-
-    const methods = 
+    const methods =
     {
-        submit(e)
+        logout()
         {
-            e.preventDefault();
-            const headers = new Headers({ 'Content-Type': 'application/json' });
-            const body = JSON.stringify({ data: { email: this.state.email, password: this.state.password } });
-            fetch(EADPI.Helpers.URLGenerator.generateApiUrl('/student/login'), { method: 'POST', headers, body })
+            fetch(EADPI.Helpers.URLGenerator.generateApiUrl('/student/logout'))
             .then(res => res.json())
-            .then(json => { EADPI.Alerts.pushFromJsonResult(json); if (json.success) window.location.href = EADPI.Helpers.URLGenerator.generatePageUrl('/students/panel'); })
+            .then(json => 
+            {
+                EADPI.Alerts.pushFromJsonResult(json);
+                if (json.success)
+                    window.location.href = EADPI.Helpers.URLGenerator.generatePageUrl('/students/login');
+            })
             .catch(reason => EADPI.Alerts.push(EADPI.Alerts.types.error, String(reason)));
-
-            return true;
-        },
-
-        changeEmail(e)
-        {
-            this.render({ ...this.state, email: e.target.value });
-        },
-
-        changePassword(e)
-        {
-            this.render({ ...this.state, password: e.target.value }); 
         }
     };
 
 
+
   const __template = function({ state }) {
     return [  
-    h("form", {"class": `mx-auto max-w-52`}, [
-      h("ext-label", {"label": `E-mail`}, [
-        h("input", {"type": `email`, "class": `w-full`, "value": state.email, "oninput": this.changeEmail.bind(this)}, "")
-      ]),
-      h("ext-label", {"label": `Senha`}, [
-        h("input", {"type": `password`, "class": `w-full`, "value": state.password, "oninput": this.changePassword.bind(this)}, "")
-      ]),
-      h("div", {"class": `text-center`}, [
-        h("button", {"class": `btn`, "type": `submit`, "onclick": this.submit.bind(this)}, `Entrar`)
-      ])
-    ])
+    h("button", {"class": `btn`, "onclick": this.logout.bind(this), "type": `button`}, `Sair`)
   ]
   }
 

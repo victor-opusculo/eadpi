@@ -35,7 +35,7 @@ EADPI.Helpers.URLGenerator =
     {
         const qs = Object.keys(query).length > 0 ? (useFriendlyUrls ? '?' : '&') + this.generateQueryString(query) : '';
         if (useFriendlyUrls)
-            return baseUrl + (routePath[0] === '/' ? routePath + qs : '/' + routePath + qs);
+            return baseUrl + '/--api' + (routePath[0] === '/' ? routePath + qs : '/' + routePath + qs);
         else
             return baseUrl + `/api.php?route=${routePath}${qs}`;
     },

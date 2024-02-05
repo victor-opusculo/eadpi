@@ -51,6 +51,17 @@ final class URLGenerator
 		};
 	}
 
+	public static function generateApiUrl(string $apiPath, array $query = []) : string
+	{
+		self::loadConfigs();
+		$qs = count($query) > 0 ? (self::$useFriendlyUrls ? '?' : '&') . self::generateQueryString($query) : '';
+		return match (self::$useFriendlyUrls)
+		{
+			true => self::BASE_URL . '/--api' . ($apiPath[0] == '/' ? $apiPath . $qs : '/' . $apiPath . $qs),
+			false => self::BASE_URL . "/api.php?page=$apiPath$qs"
+		};
+	}
+
 	private static function generateQueryString(array $queryData) : string
 	{
 		return http_build_query($queryData);

@@ -1,1 +1,8 @@
 [02-Feb-2024 20:29:06 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected end of file in Command line run code on line 1
+[04-Feb-2024 22:48:55 America/Sao_Paulo] PHP Warning:  parse_ini_file(): open_basedir restriction in effect. File(/eadpi_config.ini) is not within the allowed path(s): (C:\inetpub\wwwroot;C:\PHP\temp;C:\ProgramData\ComposerSetup;C:\Users\Victor\AppData;C:\Users\Victor\) in C:\inetpub\wwwroot\eadpi\lib\Model\Database\Connection.php on line 62
+[04-Feb-2024 22:48:55 America/Sao_Paulo] PHP Warning:  parse_ini_file(/eadpi_config.ini): Failed to open stream: Operation not permitted in C:\inetpub\wwwroot\eadpi\lib\Model\Database\Connection.php on line 62
+[04-Feb-2024 22:48:55 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type bool in C:\inetpub\wwwroot\eadpi\lib\Model\Database\Connection.php on line 63
+[04-Feb-2024 22:51:05 America/Sao_Paulo] PHP Warning:  parse_ini_file(C:\inetpub\wwwroot\eadpi\db\migrations/../../eadpi_config.ini): Failed to open stream: No such file or directory in C:\inetpub\wwwroot\eadpi\db\migrations\20240205002830_fill_students_data.php on line 25
+[04-Feb-2024 22:51:05 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type bool in C:\inetpub\wwwroot\eadpi\db\migrations\20240205002830_fill_students_data.php on line 26
+[04-Feb-2024 22:51:05 America/Sao_Paulo] PHP Warning:  Trying to access array offset on value of type null in C:\inetpub\wwwroot\eadpi\db\migrations\20240205002830_fill_students_data.php on line 26
+[05-Feb-2024 19:06:57 America/Sao_Paulo] PHP Warning:  Undefined global variable $_SESSION in C:\inetpub\wwwroot\eadpi\api\Student\Login.php on line 46

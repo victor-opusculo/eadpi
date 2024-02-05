@@ -35,7 +35,8 @@
             "VOpus\\PhpOrm\\": "VOpusPhpOrm/",
             "VictorOpusculo\\Eadpi\\App\\": "app/",
             "VictorOpusculo\\Eadpi\\Api\\": "api/",
-            "VictorOpusculo\\Eadpi\\Components\\": "components/"
+            "VictorOpusculo\\Eadpi\\Components\\": "components/",
+            "VictorOpusculo\\Eadpi\\Lib\\": "lib/"
         }
     },
 	"repositories":

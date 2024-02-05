@@ -2,8 +2,11 @@
 
 namespace VictorOpusculo\Eadpi\Lib\Model\Students;
 
+use mysqli;
 use VOpus\PhpOrm\DataEntity;
 use VOpus\PhpOrm\DataProperty;
+use VOpus\PhpOrm\Exceptions\DatabaseEntityNotFound;
+use VOpus\PhpOrm\SqlSelector;
 
 class Student extends DataEntity
 {
@@ -14,7 +17,8 @@ class Student extends DataEntity
             'id' => new DataProperty(null, fn() => null, DataProperty::MYSQL_INT, false),
             'email' => new DataProperty('txtEmail', fn() => null, DataProperty::MYSQL_STRING, true),
             'full_name' => new DataProperty('txtName', fn() => null, DataProperty::MYSQL_STRING, true),
-            'password_hash' => new DataProperty(null, fn() => null, DataProperty::MYSQL_STRING, false)
+            'password_hash' => new DataProperty(null, fn() => null, DataProperty::MYSQL_STRING, false),
+            'timezone' => new DataProperty(null, fn() => 'America/Sao_Paulo', DataProperty::MYSQL_STRING, false)
         ];
 
         parent::__construct($initialValues);
@@ -23,4 +27,25 @@ class Student extends DataEntity
     protected string $databaseTable = 'students';
     protected string $formFieldPrefixName = 'students';
     protected array $primaryKeys = ['id']; 
+
+    public function getByEmail(mysqli $conn) : self
+    {
+        $selector = $this->getGetSingleSqlSelector()
+        ->clearWhereClauses()
+        ->clearValues()
+        ->addWhereClause("{$this->getWhereQueryColumnName('email')} = ? ")
+        ->addValue('s', $this->properties->email->getValue()->unwrapOr("n@d"));
+
+        $dr = $selector->run($conn, SqlSelector::RETURN_SINGLE_ASSOC);
+
+        if (empty($dr))
+            throw new DatabaseEntityNotFound("E-mail não localizado!", $this->databaseTable);
+        else
+            return $this->newInstanceFromDataRow($dr);
+    }
+
+    public function checkPassword(string $givenPassword) : bool
+    {
+        return password_verify($givenPassword, $this->properties->password_hash->getValue()->unwrapOr('***'));
+    }
 }

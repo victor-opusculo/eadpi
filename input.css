@@ -24,7 +24,7 @@
 
 @layer components
 {
-    .btn { @apply bg-green-700 hover:bg-green-800 active:bg-green-900 px-2 py-1 text-white rounded border border-green-900 min-w-[100px] text-center dark:bg-green-800 dark:hover:bg-green-900 dark:active:bg-green-950 }
+    .btn { @apply cursor-pointer bg-green-700 hover:bg-green-800 active:bg-green-900 px-2 py-1 text-white rounded border border-green-900 min-w-[100px] text-center dark:bg-green-800 dark:hover:bg-green-900 dark:active:bg-green-950 }
 
     .link { @apply text-green-700 mx-2 hover:text-green-800 hover:underline active:text-green-900 }
 

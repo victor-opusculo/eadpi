@@ -24,6 +24,7 @@ final class DatabaseInitialSchema extends AbstractMigration
         ->addColumn('email', 'varbinary', [ 'limit' => 400, 'null' => false ])
         ->addColumn('full_name', 'varbinary', [ 'limit' => 400, 'null' => false ])
         ->addColumn('password_hash', 'string', [ 'limit' => 400, 'null' => false ])
+        ->addColumn('timezone', 'string', [ 'limit' => 140, 'null' => false ])
         ->create();
 
         $courses = $this->table('courses');
