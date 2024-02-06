@@ -25,7 +25,7 @@ final class FillCourseData extends AbstractMigration
             'id' => 1,
             'name' => 'Democracia e Cidadania',
             'presentation_html' => '',
-            'cover_image_url' => 'https://imgur.com/5NC6SY2',
+            'cover_image_url' => 'https://i.imgur.com/5NC6SY2.png',
             'hours' => 40,
             'certificate_text' => 'Concluiu o curso on-line sobre Democracia e Cidadania, promovido pela Câmara Municipal de Itapevi, por meio da Escola do Parlamento "Doutor Osmar de Souza", em sua plataforma EAD, cumprindo carga horária total de 40 horas.',
             'min_points_required_on_tests' => 14,

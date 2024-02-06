@@ -32,6 +32,7 @@ final class Login extends RouteHandler
             if ($student->checkPassword($_POST['data']['password'] ?? '***'))
             {
                 $_SESSION['user_type'] = UserTypes::student;
+                $_SESSION['user_id'] = $student->id->unwrap();
                 $_SESSION['user_email'] = $student->email->unwrap();
                 $_SESSION['user_name'] = $student->full_name->unwrapOr("Nome não definido");
                 LogEngine::writeLog("Log-in de aluno realizado: ID {$student->id->unwrapOr(0)}");

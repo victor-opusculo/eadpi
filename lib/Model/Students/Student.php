@@ -3,6 +3,7 @@
 namespace VictorOpusculo\Eadpi\Lib\Model\Students;
 
 use mysqli;
+use VictorOpusculo\Eadpi\Lib\Model\Courses\Course;
 use VOpus\PhpOrm\DataEntity;
 use VOpus\PhpOrm\DataProperty;
 use VOpus\PhpOrm\Exceptions\DatabaseEntityNotFound;
@@ -28,6 +29,8 @@ class Student extends DataEntity
     protected string $formFieldPrefixName = 'students';
     protected array $primaryKeys = ['id']; 
 
+    public array $subscriptions = [];
+
     public function getByEmail(mysqli $conn) : self
     {
         $selector = $this->getGetSingleSqlSelector()
@@ -47,5 +50,17 @@ class Student extends DataEntity
     public function checkPassword(string $givenPassword) : bool
     {
         return password_verify($givenPassword, $this->properties->password_hash->getValue()->unwrapOr('***'));
+    }
+
+    public function fetchSubscriptions(mysqli $conn) : self
+    {
+        $subsGetter = new Subscription([ 'student_id' => $this->properties->id->getValue()->unwrapOr(0) ]);
+        $subscriptions = $subsGetter->getAllFromStudent($conn);
+        
+        foreach ($subscriptions as $sub)
+            $sub->fetchCourse($conn);
+
+        $this->subscriptions = $subscriptions;
+        return $this;
     }
 }

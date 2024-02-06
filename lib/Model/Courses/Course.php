@@ -2,8 +2,10 @@
 
 namespace VictorOpusculo\Eadpi\Lib\Model\Courses;
 
+use mysqli;
 use VOpus\PhpOrm\DataEntity;
 use VOpus\PhpOrm\DataProperty;
+use VOpus\PhpOrm\SqlSelector;
 
 class Course extends DataEntity
 {
@@ -26,5 +28,17 @@ class Course extends DataEntity
 
     protected string $databaseTable = 'courses';
     protected string $formFieldPrefixName = 'courses';
-    protected array $primaryKeys = ['id']; 
+    protected array $primaryKeys = ['id'];
+    
+    public function getQuestionsTotalCount(mysqli $conn) : int
+    {
+        $selector = (new SqlSelector)
+        ->addSelectColumn('COUNT(test_questions.id)')
+        ->setTable('course_tests')
+        ->addJoin("LEFT JOIN test_questions ON test_questions.test_id = course_tests.id")
+        ->addWhereClause("course_tests.course_id = ?")
+        ->addValue('i', $this->properties->id->getValue()->unwrapOr(0));
+
+        return (int)$selector->run($conn, SqlSelector::RETURN_FIRST_COLUMN_VALUE);
+    }
 }
