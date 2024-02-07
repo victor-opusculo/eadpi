@@ -2,8 +2,10 @@
 
 namespace VictorOpusculo\Eadpi\Lib\Model\Courses;
 
+use mysqli;
 use VOpus\PhpOrm\DataEntity;
 use VOpus\PhpOrm\DataProperty;
+use VOpus\PhpOrm\SqlSelector;
 
 class Module extends DataEntity
 {
@@ -23,4 +25,26 @@ class Module extends DataEntity
     protected string $databaseTable = 'course_modules';
     protected string $formFieldPrefixName = 'course_modules';
     protected array $primaryKeys = ['id']; 
+
+    public array $lessons = [];
+
+    public function getAllFromCourse(mysqli $conn) : array
+    {
+        $selector = $this->getGetSingleSqlSelector()
+        ->clearValues()
+        ->clearWhereClauses()
+        ->addWhereClause("{$this->getWhereQueryColumnName('course_id')} = ?")
+        ->addValue('i', $this->properties->course_id->getValue()->unwrapOr(0))
+        ->setOrderBy('id');
+
+        $drs = $selector->run($conn, SqlSelector::RETURN_ALL_ASSOC);
+        return array_map([ $this, 'newInstanceFromDataRow'], $drs);
+    }
+
+    public function fetchLessons(mysqli $conn) : self
+    {
+        $getter = new Lesson([ 'module_id' => $this->properties->id->getValue()->unwrapOr(0) ]);
+        $this->lessons = $getter->getAllFromModule($conn);
+        return $this;
+    }
 }

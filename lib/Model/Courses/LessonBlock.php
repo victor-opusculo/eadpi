@@ -2,8 +2,10 @@
 
 namespace VictorOpusculo\Eadpi\Lib\Model\Courses;
 
+use mysqli;
 use VOpus\PhpOrm\DataEntity;
 use VOpus\PhpOrm\DataProperty;
+use VOpus\PhpOrm\SqlSelector;
 
 class LessonBlock extends DataEntity
 {
@@ -22,7 +24,20 @@ class LessonBlock extends DataEntity
         parent::__construct($initialValues);
     }
 
-    protected string $databaseTable = 'course_lesson_blocks';
-    protected string $formFieldPrefixName = 'course_lesson_blocks';
+    protected string $databaseTable = 'course_lesson_block';
+    protected string $formFieldPrefixName = 'course_lesson_block';
     protected array $primaryKeys = ['id']; 
+
+    public function getAllFromLesson(mysqli $conn) : array
+    {
+        $selector = $this->getGetSingleSqlSelector()
+        ->clearValues()
+        ->clearWhereClauses()
+        ->addWhereClause("{$this->getWhereQueryColumnName('lesson_id')} = ?")
+        ->addValue('i', $this->properties->lesson_id->getValue()->unwrapOr(0))
+        ->setOrderBy('id');
+
+        $drs = $selector->run($conn, SqlSelector::RETURN_ALL_ASSOC);
+        return array_map([ $this, 'newInstanceFromDataRow' ], $drs);
+    }
 }

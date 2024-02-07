@@ -30,6 +30,15 @@ class Course extends DataEntity
     protected string $formFieldPrefixName = 'courses';
     protected array $primaryKeys = ['id'];
     
+    public array $modules = [];
+
+    public function fetchModules(mysqli $conn) : self
+    {
+        $getter = new Module([ 'course_id' => $this->properties->id->getValue()->unwrapOr(0) ]);
+        $this->modules = $getter->getAllFromCourse($conn);
+        return $this;
+    }
+
     public function getQuestionsTotalCount(mysqli $conn) : int
     {
         $selector = (new SqlSelector)

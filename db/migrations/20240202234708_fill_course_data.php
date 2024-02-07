@@ -41,7 +41,7 @@ final class FillCourseData extends AbstractMigration
                 'course_id' => 1,
                 'title' => 'Módulo 01 | A história da luta pela democracia no Brasil',
                 'presentation_html' => '<div style="display: flex;">
-                <div style="width: 20%;"><img src="https://imgur.com/cUtH6Kq" width="300" /></div>
+                <div style="width: 20%;"><img style="border-radius:50%" src="https://i.imgur.com/cUtH6Kq.png" width="300" /></div>
                 <div style="width: 80%; padding: 0 20px;">
                 <h4><strong><small>Professor</small></strong>
                 PAULO SILVINO</h4>
@@ -53,7 +53,7 @@ final class FillCourseData extends AbstractMigration
                 'course_id' => 1,
                 'title' => 'Módulo 02 | Democracia e Legislativo',
                 'presentation_html' => '<div style="display: flex;">
-                <div style="width: 20%;"><img class="alignnone size-medium wp-image-968" src="https://imgur.com/2VSHHKs" alt="" width="300" height="300" /></div>
+                <div style="width: 20%;"><img class="alignnone size-medium wp-image-968" style="border-radius:50%" src="https://i.imgur.com/2VSHHKs.png" alt="" width="300" height="300" /></div>
                 <div style="width: 80%; padding: 0 20px;">
                 <h4><strong><small>Professor</small></strong></h4>
                 <h4><b>Paulo Niccoli Ramirez</b></h4>
@@ -67,7 +67,7 @@ final class FillCourseData extends AbstractMigration
                 'course_id' => 1,
                 'title' => 'Módulo 03 | Legislativo e Sistema Eleitoral',
                 'presentation_html' => '<div style="display: flex;">
-                <div style="width: 20%;"><img class="alignnone wp-image-900 size-medium" src="https://imgur.com/BXU3O9n" alt="" width="297" height="300" /></div>
+                <div style="width: 20%;"><img class="alignnone wp-image-900 size-medium" style="border-radius:50%" src="https://i.imgur.com/BXU3O9n.png" alt="" width="297" height="300" /></div>
                 <div style="width: 80%; padding: 0 20px;">
                 <h4><strong><small>Professora</small></strong>
                 TATHIANA CHICARINO</h4>
@@ -81,7 +81,7 @@ final class FillCourseData extends AbstractMigration
                 'course_id' => 1,
                 'title' => 'Módulo 04 | Introdução ao Processo Legislativo',
                 'presentation_html' => '<div style="display: flex;">
-                <div style="width: 20%;"><img class="alignnone  wp-image-974" src="https://imgur.com/GYmylfH" alt="" width="127" height="175" /></div>
+                <div style="width: 20%;"><img class="alignnone  wp-image-974" style="border-radius:50%" src="https://i.imgur.com/GYmylfH.png" alt="" width="127" height="175" /></div>
                 <div style="width: 80%; padding: 0 20px;">
                 <h4><strong><small>Professor</small></strong></h4>
                 <span style="font-weight: 400;">João Paulo Schwandner Ferreira</span>
@@ -94,7 +94,7 @@ final class FillCourseData extends AbstractMigration
                 'course_id' => 1,
                 'title' => 'Módulo 05 | Votei e agora?',
                 'presentation_html' => '<div style="display: flex;">
-                <div style="width: 20%;"><img class="alignnone wp-image-977" src="https://imgur.com/NgnvxLc" alt="" width="144" height="168" /></div>
+                <div style="width: 20%;"><img class="alignnone wp-image-977" style="border-radius:50%" src="https://i.imgur.com/NgnvxLc.png" alt="" width="144" height="168" /></div>
                 <div style="width: 80%; padding: 0 20px;">
                 <h4><strong><small>Professora</small></strong></h4>
                 <b>Mércia Alves</b>
@@ -102,23 +102,21 @@ final class FillCourseData extends AbstractMigration
                 <span style="font-weight: 400;">Doutora em Ciência Política pela Universidade Federal de São Carlos (PPGPOL / UFSCar). Foi pesquisadora visitante na Área de Ciência Política y de la Administración na Universidad de Salamanca, Espanha. Editora chefe da Revista Agenda Política (ISSN 2318-8499). É Mestre em Ciência Política e Bacharel em Ciências Sociais. Foi bolsista FAPESP durante o Mestrado e Doutorado. É membro dos grupos de pesquisa Comunicação Política, Partidos e Eleições (UFSCar) e do Núcleo de Estudos em Arte, Mídia e Política - NEAMP (PUC-SP). Desenvolve pesquisas na área de Ciência Política, com ênfase em Comunicação Política, principalmente nos temas: Mídia e Eleições, Campanhas Eleitorais, Profissionalização de Campanhas, Campanhas Locais, e Metodologia de Pesquisa.</span>
                 
                 </div>
-                </div>
+</div>
                 <!--more-->
-                <div style="width: 20%;"><img class="wp-image-978 alignleft" src="https://imgur.com/RUfUbT4" alt="" width="148" height="148" /></div>
+<div style="display: flex; margin-top: 2rem;"> 
+                <div style="width: 20%;"><img class="wp-image-978 alignleft" style="border-radius:50%" src="https://i.imgur.com/RUfUbT4.png" alt="" width="148" height="148" /></div>
                 <div style="width: 80%; padding: 0 20px;">
                 <h4><strong><small>Professora</small></strong></h4>
                 <b>Isabela Kalil </b>
                 <p style="text-align: left;"><span style="font-weight: 400;">Doutora em Antropologia e professora da Escola de Sociologia e Política de São Paulo. É uma das coordenadoras do Observatório da Extrema Direita (OED-Brasil) e pesquisa política, comunicação, protestos e manifestações no espaço urbano. </span></p>
                 
                 </div>
-                <div style="width: 80%; padding: 0 20px;">
-                <div style="display: flex;">
-                <div style="width: 80%; padding: 0 20px;">
-                
-                </div>
-                </div>
+</div>
+
+<div style="display: flex; margin-top: 2rem;">
                 <!--more-->
-                <div style="width: 20%;"><img class="wp-image-1187 size-medium alignleft" src="https://imgur.com/q5ukMiv" alt="" width="300" height="300" /></div>
+                <div style="width: 20%;"><img class="wp-image-1187 size-medium alignleft" style="border-radius:50%" src="https://i.imgur.com/q5ukMiv.png" alt="" width="300" height="300" /></div>
                 <div style="width: 80%; padding: 0 20px;">
                 <h4><strong><small>Professor</small></strong></h4>
                 <b>Rafael Castilho</b>
@@ -126,7 +124,7 @@ final class FillCourseData extends AbstractMigration
                 <span style="font-weight: 400;">Sociólogo, com especialização em Gestão Pública e em Política e Relações Internacionais. É Coordenador de Projetos da Fundação Escola de Sociologia e Política de São Paulo. É também Coordenador Administrativo do MBA PPP e Concessões e do MBA Saneamento Ambiental, </span><span style="font-weight: 400;">realizados pela FESPSP, com módulo Internacional na London School of Economics and Political Science, por meio da LSE Custom Programmes.</span>
                 
                 </div>
-                </div>'                
+</div>'                
             ]
         ];
         $table->insert($moduleDrs)->saveData();

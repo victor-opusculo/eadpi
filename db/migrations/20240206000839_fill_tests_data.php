@@ -24,24 +24,31 @@ final class FillTestsData extends AbstractMigration
 
         $table = $this->table('student_completed_test_questions');
 
+        $alreadyPassedTests = [];
+
         while ($row = fgetcsv($file, 1000, ";"))
         {
             $subsIdStmt = $this->query("SELECT * FROM student_subscriptions WHERE student_subscriptions.student_id = ? AND student_subscriptions.course_id = ?", [  (int)$row[1], 1 ]);
             $subsRow = $subsIdStmt->fetch(PDO::FETCH_ASSOC);
 
-            if (!empty($subsRow['id']) && (bool)(int)$row[6])
-                $table->insert(
-                    [
-                        'id' => $row[0],
-                        'student_id' => $row[1],
-                        'subscription_id' => $subsRow['id'],
-                        'question_id' => $row[4],
-                        'completed_at' => $row[8],
-                        'answers' => $row[7],
-                        'is_correct' => $row[6],
-                        'attempts' => 1
-                    ]
-                );
+            if (!empty($subsRow['id']))
+            {
+                if (array_search([ $subsRow['id'], $row[4] ], $alreadyPassedTests) === false)
+                    $table->insert(
+                        [
+                            'id' => $row[0],
+                            'student_id' => $row[1],
+                            'subscription_id' => $subsRow['id'],
+                            'question_id' => $row[4],
+                            'completed_at' => $row[8],
+                            'answers' => $row[7],
+                            'is_correct' => $row[6],
+                            'attempts' => 1
+                        ]
+                    );
+
+                $alreadyPassedTests[] = [ $subsRow['id'], $row[4] ];
+            }
         }      
         $table->saveData(); 
         fclose($file); 

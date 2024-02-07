@@ -14,6 +14,18 @@ return
         '/panel' => fn() =>
         [
             '/' => \VictorOpusculo\Eadpi\App\Students\Panel\PanelHome::class,
+            '/subscription' => fn() => 
+            [
+                '/[id]' => \VictorOpusculo\Eadpi\App\Students\Panel\Subscription\SubsId::class
+            ],
+            '/module' => fn() =>
+            [
+                '/[id]' => \VictorOpusculo\Eadpi\App\Students\Panel\Module\ModId::class
+            ],
+            '/lesson' => fn() =>
+            [
+                '/[id]' => \VictorOpusculo\Eadpi\App\Students\Panel\Lesson\LessId::class
+            ],
             '__layout' => \VictorOpusculo\Eadpi\App\Students\Panel\PanelLayout::class
         ]
     ],

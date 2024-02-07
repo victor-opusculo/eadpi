@@ -34,7 +34,7 @@ final class PanelHome extends Component
         return 
         [
             tag('h1', children: text('Meu aprendizado')),
-            tag('div', class: 'flex flex-wrap px-8', children: 
+            tag('div', class: 'flex flex-wrap lg:px-8 px-4', children: 
                 array_map(fn(Subscription $subs) => component(SubscriptionCard::class, subscription: $subs), $this->student->subscriptions)
             )
         ];
