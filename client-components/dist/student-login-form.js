@@ -5,7 +5,9 @@
    
     Component.prototype.render = function(state)
     {
-       const childrenHtml = Array.from(this.children);
+      const childs = Array.from(this.children);
+      this.__originalChildren = childs.length && !this.__originalChildren?.length ? childs : this.__originalChildren;
+
        this.__state.slotId = `slot_${performance.now().toString().replace('.','')}_${Math.floor(Math.random() * 1000)}`;
    
       this.setState(state);
@@ -18,7 +20,7 @@
    
       const slot = this.document.querySelector(`#${this.__state.slotId}`);
       if (slot)
-         for (const c of childrenHtml)
+         for (const c of this.__originalChildren)
              slot.appendChild(c);
             
       return rendered;
@@ -60,7 +62,7 @@
 
   const __template = function({ state }) {
     return [  
-    h("form", {"class": `mx-auto max-w-52`}, [
+    h("form", {"class": `mx-auto max-w-[500px]`}, [
       h("ext-label", {"label": `E-mail`}, [
         h("input", {"type": `email`, "class": `w-full`, "value": state.email, "oninput": this.changeEmail.bind(this)}, "")
       ]),

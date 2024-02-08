@@ -106,7 +106,7 @@ class DataProperty implements \JsonSerializable
 		foreach ($propsFromPost as $name => $value)
 			if ($name === $this->formFieldIdentifierName)
 			{
-				$this->setValue(Option::some($value));
+				$this->setValue($value);
 				break;
 			}
 	}

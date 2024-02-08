@@ -6,3 +6,6 @@ customElements.define('student-login-form', StudentLoginForm)
 
 import StudentLogoutButton from './student-logout-button.js'
 customElements.define('student-logout-button', StudentLogoutButton)
+
+import StudentRegisterForm from './student-register-form.js'
+customElements.define('student-register-form', StudentRegisterForm)

@@ -22938,3 +22938,102 @@ Stack trace:
 #18 {main}
   thrown in C:\inetpub\wwwroot\eadpi\app\Students\Panel\Lesson\LessId.php on line 95
 [06-Feb-2024 22:16:08 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected token ",", expecting ")" in C:\inetpub\wwwroot\eadpi\components\Students\LessonBlockSection.php on line 30
+[07-Feb-2024 19:48:17 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Typed property VictorOpusculo\Eadpi\App\Students\Register::$lgpdTermVersion must not be accessed before initialization in C:\inetpub\wwwroot\eadpi\app\Students\Register.php:38
+Stack trace:
+#0 C:\Users\Victor\source\php\PComp\src\Component.php(21): VictorOpusculo\Eadpi\App\Students\Register->markup()
+#1 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#2 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\Eadpi\App\Students\Register))
+#3 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#4 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#5 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#6 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#7 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#8 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#9 C:\Users\Victor\source\php\PComp\src\Component.php(23): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#10 C:\Users\Victor\source\php\PComp\src\AppInitializer.php(108): VictorOpusculo\PComp\Component->prepareSetUp()
+#11 C:\inetpub\wwwroot\eadpi\index.php(9): VictorOpusculo\PComp\AppInitializer->__construct(Array)
+#12 {main}
+  thrown in C:\inetpub\wwwroot\eadpi\app\Students\Register.php on line 38
+[07-Feb-2024 19:49:28 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Typed property VictorOpusculo\Eadpi\App\Students\Register::$lgpdTermVersion must not be accessed before initialization in C:\inetpub\wwwroot\eadpi\app\Students\Register.php:39
+Stack trace:
+#0 C:\Users\Victor\source\php\PComp\src\Component.php(21): VictorOpusculo\Eadpi\App\Students\Register->markup()
+#1 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#2 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\Eadpi\App\Students\Register))
+#3 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#4 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#5 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#6 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#7 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#8 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#9 C:\Users\Victor\source\php\PComp\src\Component.php(23): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#10 C:\Users\Victor\source\php\PComp\src\AppInitializer.php(108): VictorOpusculo\PComp\Component->prepareSetUp()
+#11 C:\inetpub\wwwroot\eadpi\index.php(9): VictorOpusculo\PComp\AppInitializer->__construct(Array)
+#12 {main}
+  thrown in C:\inetpub\wwwroot\eadpi\app\Students\Register.php on line 39
+[07-Feb-2024 19:49:29 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Typed property VictorOpusculo\Eadpi\App\Students\Register::$lgpdTermVersion must not be accessed before initialization in C:\inetpub\wwwroot\eadpi\app\Students\Register.php:39
+Stack trace:
+#0 C:\Users\Victor\source\php\PComp\src\Component.php(21): VictorOpusculo\Eadpi\App\Students\Register->markup()
+#1 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#2 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\Eadpi\App\Students\Register))
+#3 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#4 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#5 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#6 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#7 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#8 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#9 C:\Users\Victor\source\php\PComp\src\Component.php(23): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#10 C:\Users\Victor\source\php\PComp\src\AppInitializer.php(108): VictorOpusculo\PComp\Component->prepareSetUp()
+#11 C:\inetpub\wwwroot\eadpi\index.php(9): VictorOpusculo\PComp\AppInitializer->__construct(Array)
+#12 {main}
+  thrown in C:\inetpub\wwwroot\eadpi\app\Students\Register.php on line 39
+[07-Feb-2024 19:49:30 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Typed property VictorOpusculo\Eadpi\App\Students\Register::$lgpdTermVersion must not be accessed before initialization in C:\inetpub\wwwroot\eadpi\app\Students\Register.php:39
+Stack trace:
+#0 C:\Users\Victor\source\php\PComp\src\Component.php(21): VictorOpusculo\Eadpi\App\Students\Register->markup()
+#1 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#2 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\Eadpi\App\Students\Register))
+#3 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#4 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#5 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#6 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#7 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#8 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#9 C:\Users\Victor\source\php\PComp\src\Component.php(23): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#10 C:\Users\Victor\source\php\PComp\src\AppInitializer.php(108): VictorOpusculo\PComp\Component->prepareSetUp()
+#11 C:\inetpub\wwwroot\eadpi\index.php(9): VictorOpusculo\PComp\AppInitializer->__construct(Array)
+#12 {main}
+  thrown in C:\inetpub\wwwroot\eadpi\app\Students\Register.php on line 39
+[07-Feb-2024 19:50:39 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Typed property VictorOpusculo\Eadpi\App\Students\Register::$lgpdTermVersion must not be accessed before initialization in C:\inetpub\wwwroot\eadpi\app\Students\Register.php:42
+Stack trace:
+#0 C:\Users\Victor\source\php\PComp\src\Component.php(21): VictorOpusculo\Eadpi\App\Students\Register->markup()
+#1 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#2 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\Eadpi\App\Students\Register))
+#3 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#4 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#5 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#6 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#7 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#8 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#9 C:\Users\Victor\source\php\PComp\src\Component.php(23): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#10 C:\Users\Victor\source\php\PComp\src\AppInitializer.php(108): VictorOpusculo\PComp\Component->prepareSetUp()
+#11 C:\inetpub\wwwroot\eadpi\index.php(9): VictorOpusculo\PComp\AppInitializer->__construct(Array)
+#12 {main}
+  thrown in C:\inetpub\wwwroot\eadpi\app\Students\Register.php on line 42
+[07-Feb-2024 19:51:08 America/Sao_Paulo] PHP Fatal error:  Default value for property of type int may not be null. Use the nullable type ?int to allow null default value in C:\inetpub\wwwroot\eadpi\app\Students\Register.php on line 31
+[07-Feb-2024 21:51:24 America/Sao_Paulo] PHP Fatal error:  Uncaught TypeError: VOpus\PhpOrm\DataProperty::getValue(): Return value must be of type VOpus\PhpOrm\Option, string returned in C:\inetpub\wwwroot\eadpi\VOpusPhpOrm\DataProperty.php:60
+Stack trace:
+#0 C:\inetpub\wwwroot\eadpi\VOpusPhpOrm\DataEntity.php(289): VOpus\PhpOrm\DataProperty->getValue()
+#1 C:\inetpub\wwwroot\eadpi\VOpusPhpOrm\DataEntity.php(139): VOpus\PhpOrm\DataEntity->getInsertCommandInfos()
+#2 C:\inetpub\wwwroot\eadpi\api\Student\Register.php(34): VOpus\PhpOrm\DataEntity->save(Object(mysqli))
+#3 C:\Users\Victor\source\php\PComp\src\RouteHandler.php(47): VictorOpusculo\Eadpi\Api\Student\Register->POST()
+#4 C:\inetpub\wwwroot\eadpi\api.php(104): VictorOpusculo\PComp\RouteHandler->run(NULL)
+#5 {main}
+  thrown in C:\inetpub\wwwroot\eadpi\VOpusPhpOrm\DataProperty.php on line 60
+[07-Feb-2024 21:52:31 America/Sao_Paulo] PHP Fatal error:  Uncaught TypeError: VOpus\PhpOrm\DataProperty::getValue(): Return value must be of type VOpus\PhpOrm\Option, string returned in C:\inetpub\wwwroot\eadpi\VOpusPhpOrm\DataProperty.php:60
+Stack trace:
+#0 C:\inetpub\wwwroot\eadpi\VOpusPhpOrm\DataEntity.php(289): VOpus\PhpOrm\DataProperty->getValue()
+#1 C:\inetpub\wwwroot\eadpi\VOpusPhpOrm\DataEntity.php(139): VOpus\PhpOrm\DataEntity->getInsertCommandInfos()
+#2 C:\inetpub\wwwroot\eadpi\api\Student\Register.php(34): VOpus\PhpOrm\DataEntity->save(Object(mysqli))
+#3 C:\Users\Victor\source\php\PComp\src\RouteHandler.php(47): VictorOpusculo\Eadpi\Api\Student\Register->POST()
+#4 C:\inetpub\wwwroot\eadpi\api.php(104): VictorOpusculo\PComp\RouteHandler->run(NULL)
+#5 {main}
+  thrown in C:\inetpub\wwwroot\eadpi\VOpusPhpOrm\DataProperty.php on line 60

@@ -5,7 +5,9 @@
    
     Component.prototype.render = function(state)
     {
-       const childrenHtml = Array.from(this.children);
+      const childs = Array.from(this.children);
+      this.__originalChildren = childs.length && !this.__originalChildren?.length ? childs : this.__originalChildren;
+
        this.__state.slotId = `slot_${performance.now().toString().replace('.','')}_${Math.floor(Math.random() * 1000)}`;
    
       this.setState(state);
@@ -18,7 +20,7 @@
    
       const slot = this.document.querySelector(`#${this.__state.slotId}`);
       if (slot)
-         for (const c of childrenHtml)
+         for (const c of this.__originalChildren)
              slot.appendChild(c);
             
       return rendered;
@@ -38,18 +40,14 @@
   const __template = function({ state }) {
     return [  
     h("label", {"class": `flex m-2 ${state.lineBreak ? 'flex-col' : 'flex-row items-center'}`}, [
-      ((!state.reverse) ? h("span", {}, [
-        h("span", {"class": `shrink mr-2 text-base ${state.labelBold ? 'font-bold' : ''}`}, `${state.label}: `),
-        h("span", {"class": `grow text-base flex flex-row flex-wrap`}, [
-          h("slot", {"id": `${state.slotId}`}, "")
-        ])
+      ((!state.reverse) ? h("span", {"class": `shrink mr-2 text-base ${state.labelBold ? 'font-bold' : ''}`}, `${state.label}: `) : ''),
+      ((!state.reverse) ? h("span", {"class": `grow text-base flex flex-row flex-wrap`}, [
+        h("slot", {"class": `inlinw-block w-full`, "id": `${state.slotId}`}, "")
       ]) : ''),
-      ((state.reverse) ? h("span", {}, [
-        h("span", {"class": `text-base`}, [
-          h("slot", {"id": `${state.slotId}`}, "")
-        ]),
-        h("span", {"class": `ml-2 text-base ${state.labelBold ? 'font-bold' : ''}`}, `${state.label}: `)
-      ]) : '')
+      ((state.reverse) ? h("span", {"class": `text-base`}, [
+        h("slot", {"class": `inline-block w-full`, "id": `${state.slotId}`}, "")
+      ]) : ''),
+      ((state.reverse) ? h("span", {"class": `ml-2 text-base ${state.labelBold ? 'font-bold' : ''}`}, ` ${state.label}`) : '')
     ])
   ]
   }

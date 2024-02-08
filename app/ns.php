@@ -11,6 +11,7 @@ return
     '/students' => fn() =>
     [
         '/login' => Students\Login::class,
+        '/register' => Students\Register::class,
         '/panel' => fn() =>
         [
             '/' => \VictorOpusculo\Eadpi\App\Students\Panel\PanelHome::class,

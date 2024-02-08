@@ -7,6 +7,7 @@ return
     '/student' => fn() =>
     [
         '/login' => Student\Login::class,
-        '/logout' => Student\Logout::class
+        '/logout' => Student\Logout::class,
+        '/register' => Student\Register::class
     ]
 ];

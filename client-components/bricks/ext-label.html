@@ -12,17 +12,14 @@
 
 <template>
     <label class="flex m-2 ${state.lineBreak ? 'flex-col' : 'flex-row items-center'}">
-        <span :if="!state.reverse">
-            <span class="shrink mr-2 text-base ${state.labelBold ? 'font-bold' : ''}">${state.label}: </span>
-            <span class="grow text-base flex flex-row flex-wrap">
-                <slot id="${state.slotId}"></slot>
+            <span :if="!state.reverse" class="shrink mr-2 text-base ${state.labelBold ? 'font-bold' : ''}">${state.label}: </span>
+            <span :if="!state.reverse" class="grow text-base flex flex-row flex-wrap">
+                <slot class="inlinw-block w-full" id="${state.slotId}"></slot>
             </span>
-        </span>
-        <span :if="state.reverse">
-            <span class="text-base">
-                <slot id="${state.slotId}"></slot>
+
+            <span :if="state.reverse" class="text-base">
+                <slot class="inline-block w-full" id="${state.slotId}"></slot>
             </span>
-            <span class="ml-2 text-base ${state.labelBold ? 'font-bold' : ''}">${state.label}: </span>
-        </span>
+            <span :if="state.reverse" class="ml-2 text-base ${state.labelBold ? 'font-bold' : ''}"> ${state.label}</span>
     </label>
 </template>

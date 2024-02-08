@@ -35,7 +35,10 @@ final class PanelHome extends Component
         [
             tag('h1', children: text('Meu aprendizado')),
             tag('div', class: 'flex flex-wrap lg:px-8 px-4', children: 
-                array_map(fn(Subscription $subs) => component(SubscriptionCard::class, subscription: $subs), $this->student->subscriptions)
+                count($this->student->subscriptions) > 0 ?
+                    array_map(fn(Subscription $subs) => component(SubscriptionCard::class, subscription: $subs), $this->student->subscriptions)
+                :
+                    tag('p', class: 'grow text-center', children: text('Você ainda não está inscrito em quaisquer cursos. Inscreva-se no menu Cursos acima!'))
             )
         ];
     }

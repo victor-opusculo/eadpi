@@ -786,6 +786,10 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   margin-bottom: auto;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .ml-2 {
   margin-left: 0.5rem;
 }
@@ -794,8 +798,8 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   margin-right: 0.5rem;
 }
 
-.mb-4 {
-  margin-bottom: 1rem;
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .block {
@@ -804,6 +808,10 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
 
 .inline-block {
   display: inline-block;
+}
+
+.inline {
+  display: inline;
 }
 
 .flex {
@@ -842,12 +850,44 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   height: auto;
 }
 
-.h-\[800px\] {
-  height: 800px;
+.h-screen {
+  height: 100vh;
+}
+
+.h-\[calc\(100\%-100px\)\] {
+  height: calc(100% - 100px);
+}
+
+.h-full {
+  height: 100%;
 }
 
 .min-h-\[calc\(100vh-295px\)\] {
   min-height: calc(100vh - 295px);
+}
+
+.min-h-full {
+  min-height: 100%;
+}
+
+.min-h-\[calc\(100\%-100px\)\] {
+  min-height: calc(100% - 100px);
+}
+
+.min-h-\[calc\(100vh-100px\)\] {
+  min-height: calc(100vh - 100px);
+}
+
+.min-h-\[calc\(100vh-200px\)\] {
+  min-height: calc(100vh - 200px);
+}
+
+.min-h-\[calc\(100vh-150px\)\] {
+  min-height: calc(100vh - 150px);
+}
+
+.min-h-\[calc\(100vh-180px\)\] {
+  min-height: calc(100vh - 180px);
 }
 
 .w-\[230px\] {
@@ -882,8 +922,20 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   width: 100%;
 }
 
+.w-screen {
+  width: 100vw;
+}
+
 .min-w-\[300px\] {
   min-width: 300px;
+}
+
+.min-w-\[500px\] {
+  min-width: 500px;
+}
+
+.min-w-\[400px\] {
+  min-width: 400px;
 }
 
 .max-w-52 {
@@ -898,16 +950,16 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   max-width: 400px;
 }
 
+.max-w-\[600px\] {
+  max-width: 600px;
+}
+
 .max-w-\[700px\] {
   max-width: 700px;
 }
 
-.max-w-full {
-  max-width: 100%;
-}
-
-.max-w-\[600px\] {
-  max-width: 600px;
+.max-w-\[500px\] {
+  max-width: 500px;
 }
 
 .flex-1 {
@@ -940,10 +992,6 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
 
 .items-center {
   align-items: center;
-}
-
-.justify-center {
-  justify-content: center;
 }
 
 .justify-between {
@@ -1111,6 +1159,25 @@ html {
   font-size: 18px;
 }
 
+.backdrop\:bg-gray-50::backdrop {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.backdrop\:bg-gray-700\/60::backdrop {
+  background-color: rgb(55 65 81 / 0.6);
+}
+
+.backdrop\:brightness-75::backdrop {
+  --tw-brightness: brightness(.75);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.backdrop\:brightness-50::backdrop {
+  --tw-brightness: brightness(.5);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .first-of-type\:border:first-of-type {
   border-width: 1px;
 }
@@ -1198,6 +1265,10 @@ html {
 
   .md\:w-\[2px\] {
     width: 2px;
+  }
+
+  .md\:w-\[700px\] {
+    width: 700px;
   }
 
   .md\:flex-row {

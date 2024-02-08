@@ -1,0 +1,121 @@
+
+<script>
+    const state =
+    {
+        fullName: '',
+        email: '',
+        password: '',
+        password2: '',
+        timeZone: 'America/Sao_Paulo',
+        lgpdConsentCheck: false,
+        lgpdtermversion: 0,
+        lgpdTermText: '',
+        slotId: ''
+    };
+
+    const methods =
+    {
+        nameChanged(e)
+        {
+            this.render({ ...this.state, fullName: e.target.value });
+        },
+
+        emailChanged(e)
+        {
+            this.render({ ...this.state, email: e.target.value });
+        },
+
+        passwordChanged(e)
+        {
+            this.render({ ...this.state, password: e.target.value });
+        },
+
+        password2Changed(e)
+        {
+            this.render({ ...this.state, password2: e.target.value });
+        },
+
+        timeZoneChanged(e)
+        {
+            this.render({ ...this.state, timeZone: e.target.value });
+        },
+
+        consentChecked(e)
+        {
+            this.render({ ...this.state, lgpdConsentCheck: e.target.checked });
+        },
+
+        showLgpd()
+        {
+            document.getElementById('lgpdTermDialog')?.showModal();
+        },
+
+        submit(e)
+        {
+            this.render({...this.state, lgpdTermText: document.getElementById('lgpdTermForm')?.elements['lgpdTerm']?.value ?? '***'});
+            e.preventDefault();
+
+            if (this.state.password !== this.state.password2)
+            {
+                EADPI.Alerts.push(EADPI.Alerts.types.info, "As senhas não coincidem!");
+                return;
+            }
+
+            const data = {};
+            for (const prop in this.state)
+                data['students:' + prop] = this.state[prop];
+
+            const headers = new Headers({ 'Content-Type': 'application/json' });
+            const body = JSON.stringify({ data });
+            fetch(EADPI.Helpers.URLGenerator.generateApiUrl('/student/register'), { method: 'POST', headers, body })
+            .then(res => res.json())
+            .then(json =>
+            {
+                EADPI.Alerts.pushFromJsonResult(json);
+                if (json.success)
+                    window.location.href = EADPI.Helpers.URLGenerator.generatePageUrl('/students/login');
+            })
+            .catch(reason => EADPI.Alerts.push(EADPI.Alerts.types.error, String(reason)));
+        }
+    };
+</script>
+
+<template>
+    <form class="mx-auto max-w-[700px]" @submit="submit">
+        <ext-label label="Nome completo">
+            <input type="text" required class="w-full" maxlength="140" :value="state.fullName" @input="nameChanged"/>
+        </ext-label>
+        <ext-label label="E-mail">
+            <input type="email" required class="w-full" maxlength="140" :value="state.email" @input="emailChanged"/>
+        </ext-label>
+        <ext-label label="Senha">
+            <input type="password" required class="w-full" maxlength="140" :value="state.password" @input="passwordChanged"/>
+        </ext-label>
+        <ext-label label="Confirme a senha">
+            <input type="password" required class="w-full" maxlength="140" :value="state.password2" @input="password2Changed"/>
+        </ext-label>
+        <ext-label label="Seu fuso horário">
+            <select @change="timeZoneChanged">
+                <option :for="dtz in EADPI.Time.TimeZones" :value="dtz" :selected="dtz === 'America/Sao_Paulo'">${dtz}</option>
+            </select>
+        </ext-label>
+        <div class="mt-4">
+            Concorda com o termo de consentimento para uso dos seus dados pessoais?
+            <button type="button" class="btn" @click="showLgpd">Ler</button>
+        </div>
+        <ext-label reverse="1" label="Concordo">
+            <input type="checkbox" required value="${state.lgpdTermVersion}" :checked="state.lgpdConsentCheck" @change="consentChecked"/>
+        </ext-label>
+        <div class="text-center mt-4">
+            <button class="btn" type="submit">Cadastrar-me</button>
+        </div>
+    </form>
+    <dialog id="lgpdTermDialog" class="md:w-[700px] w-screen h-screen backdrop:bg-gray-700/60 p-4 bg-neutral-100 dark:bg-neutral-800">
+        <form id="lgpdTermForm" method="dialog">
+            <slot id="${state.slotId}"></slot>
+            <div class="text-center my-4">
+                <button class="btn" type="submit">Fechar</button>
+            </div>
+        </form>
+    </dialog>
+</template>
