@@ -9,7 +9,7 @@ use VOpus\PhpOrm\SqlSelector;
 
 class Course extends DataEntity
 {
-    public function __construct(?array $initialValues)
+    public function __construct(?array $initialValues = null)
     {
         $this->properties = (object)
         [
@@ -49,5 +49,47 @@ class Course extends DataEntity
         ->addValue('i', $this->properties->id->getValue()->unwrapOr(0));
 
         return (int)$selector->run($conn, SqlSelector::RETURN_FIRST_COLUMN_VALUE);
+    }
+
+    public function exists(mysqli $conn) : bool
+    {
+        $selector = (new SqlSelector)
+        ->addSelectColumn('COUNT(*)')
+        ->setTable($this->databaseTable)
+        ->addWhereClause("{$this->getWhereQueryColumnName('id')} = ?")
+        ->addValue('i', $this->properties->id->getValue()->unwrap());
+
+        $exists = $selector->run($conn, SqlSelector::RETURN_FIRST_COLUMN_VALUE);
+        return $exists > 0;
+    }
+
+    public function getAll(mysqli $conn) : array
+    {
+        $selector = $this->getGetSingleSqlSelector()
+        ->clearValues()
+        ->clearWhereClauses();
+
+        $drs = $selector->run($conn, SqlSelector::RETURN_ALL_ASSOC);
+        return array_map([ $this, 'newInstanceFromDataRow' ], $drs);
+    }
+
+    public function getInfos(mysqli $conn) : array
+    {
+        $selector = (new SqlSelector)
+        ->addSelectColumn('courses.hours')
+        ->addSelectColumn('COUNT(DISTINCT course_modules.id) AS modules')
+        ->addSelectColumn('COUNT(DISTINCT course_lessons.id) AS lessons')
+        ->addSelectColumn('COUNT(DISTINCT course_tests.id) as tests')
+        ->addSelectColumn('COUNT(DISTINCT course_lesson_block.id) AS blocks')
+        ->setTable($this->databaseTable)
+        ->addJoin("LEFT JOIN course_modules ON course_modules.course_id = courses.id")
+        ->addJoin("LEFT JOIN course_lessons ON course_lessons.module_id = course_modules.id")
+        ->addJoin("LEFT JOIN course_tests ON course_tests.course_id = courses.id")
+        ->addJoin("LEFT JOIN course_lesson_block ON course_lesson_block.lesson_id = course_lessons.id")
+        ->addWhereClause("{$this->getWhereQueryColumnName('id')} = ?")
+        ->addValue('i', $this->properties->id->getValue()->unwrapOr(0));
+
+        $dr = $selector->run($conn, SqlSelector::RETURN_SINGLE_ASSOC);
+        return $dr;
     }
 }

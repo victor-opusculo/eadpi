@@ -8,6 +8,10 @@ return
     [
         '/login' => Student\Login::class,
         '/logout' => Student\Logout::class,
-        '/register' => Student\Register::class
+        '/register' => Student\Register::class,
+        '/subscribe' => fn() =>
+        [
+            '/[courseId]' => Student\Subscribe\CourseId::class
+        ]
     ]
 ];

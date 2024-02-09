@@ -5,6 +5,7 @@ namespace VictorOpusculo\Eadpi\Lib\Model\Courses;
 use mysqli;
 use VOpus\PhpOrm\DataEntity;
 use VOpus\PhpOrm\DataProperty;
+use VOpus\PhpOrm\Exceptions\DatabaseEntityNotFound;
 use VOpus\PhpOrm\SqlSelector;
 
 class Module extends DataEntity
@@ -47,4 +48,20 @@ class Module extends DataEntity
         $this->lessons = $getter->getAllFromModule($conn);
         return $this;
     }
+
+    /*
+    public function getSingleFromCourse(mysqli $conn) : self
+    {
+        $selector = $this->getGetSingleSqlSelector()
+        ->clearValues()
+        ->clearWhereClauses()
+        ->addWhereClause("{$this->getWhereQueryColumnName('course_id')} = ?")
+        ->addValue('i', $this->properties->course_id->getValue()->unwrapOr(0));
+
+        $dr = $selector->run($conn, SqlSelector::RETURN_SINGLE_ASSOC);
+        if (isset($dr))
+            return $this->newInstanceFromDataRow($dr);
+        else    
+            throw new DatabaseEntityNotFound("Módulo não localizado.", $this->databaseTable);
+    }*/
 }

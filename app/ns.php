@@ -8,6 +8,14 @@ require_once "BaseLayout.php";
 return 
 [
     '/' => HomePage::class,
+    '/infos' => fn() =>
+    [
+        '/courses' => fn() =>
+        [
+            '/' => \VictorOpusculo\Eadpi\App\Infos\Courses\Home::class,
+            '/[id]' => \VictorOpusculo\Eadpi\App\Infos\Courses\CourseId::class
+        ]
+    ],
     '/students' => fn() =>
     [
         '/login' => Students\Login::class,
@@ -26,6 +34,13 @@ return
             '/lesson' => fn() =>
             [
                 '/[id]' => \VictorOpusculo\Eadpi\App\Students\Panel\Lesson\LessId::class
+            ],
+            '/test' => fn() => 
+            [
+                '/[id]' => fn() =>
+                [
+                    '/' => \VictorOpusculo\Eadpi\App\Students\Panel\Test\TestId::class
+                ]
             ],
             '__layout' => \VictorOpusculo\Eadpi\App\Students\Panel\PanelLayout::class
         ]

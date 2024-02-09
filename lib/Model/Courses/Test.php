@@ -2,6 +2,7 @@
 
 namespace VictorOpusculo\Eadpi\Lib\Model\Courses;
 
+use mysqli;
 use VOpus\PhpOrm\DataEntity;
 use VOpus\PhpOrm\DataProperty;
 
@@ -22,7 +23,15 @@ class Test extends DataEntity
         parent::__construct($initialValues);
     }
 
+    public array $questions = [];
+
     protected string $databaseTable = 'course_tests';
     protected string $formFieldPrefixName = 'course_tests';
     protected array $primaryKeys = ['id']; 
+
+    public function fetchQuestions(mysqli $conn) : self
+    {
+        $this->questions = (new TestQuestion([ 'test_id' => $this->properties->id->getValue()->unwrapOr(0) ]))->getAllFromTest($conn);
+        return $this;
+    }
 }

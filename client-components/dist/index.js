@@ -1,3 +1,6 @@
+import CourseSubscribeButton from './course-subscribe-button.js'
+customElements.define('course-subscribe-button', CourseSubscribeButton)
+
 import ExtLabel from './ext-label.js'
 customElements.define('ext-label', ExtLabel)
 

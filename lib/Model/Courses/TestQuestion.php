@@ -2,8 +2,10 @@
 
 namespace VictorOpusculo\Eadpi\Lib\Model\Courses;
 
+use mysqli;
 use VOpus\PhpOrm\DataEntity;
 use VOpus\PhpOrm\DataProperty;
+use VOpus\PhpOrm\SqlSelector;
 
 class TestQuestion extends DataEntity
 {
@@ -25,4 +27,17 @@ class TestQuestion extends DataEntity
     protected string $databaseTable = 'test_question';
     protected string $formFieldPrefixName = 'test_question';
     protected array $primaryKeys = ['id']; 
+
+    public function getAllFromTest(mysqli $conn) : array
+    {
+        $selector = $this->getGetSingleSqlSelector()
+        ->clearValues()
+        ->clearWhereClauses()
+        ->addWhereClause("{$this->getWhereQueryColumnName('test_id')} = ?")
+        ->addValue('i', $this->properties->test_id->getValue()->unwrapOr(0))
+        ->setOrderBy('id');
+
+        $drs = $selector->run($conn, SqlSelector::RETURN_ALL_ASSOC);
+        return array_map([ $this, 'newInstanceFromDataRow' ], $drs);
+    }
 }

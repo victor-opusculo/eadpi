@@ -1,0 +1,29 @@
+
+<script>
+    const state = 
+    {
+        courseid: null
+    }
+
+    const methods =
+    {
+        onClick()
+        {
+            if (!this.state.courseid) return;
+
+            fetch(EADPI.Helpers.URLGenerator.generateApiUrl(`/student/subscribe/${this.state.courseid}`), { method: 'POST' })
+            .then(res => res.json())
+            .then(json =>
+            {
+                EADPI.Alerts.pushFromJsonResult(json);
+                if (json.success)
+                    window.location.href = EADPI.Helpers.URLGenerator.generatePageUrl('/students/panel');
+            })
+            .catch(reason => EADPI.Alerts.push(EADPI.Alerts.types.error, String(reason)));
+        }
+    };
+</script>
+
+<template>
+    <button class="btn" type="button" @click="onClick">Inscrever-se</button>
+</template>
