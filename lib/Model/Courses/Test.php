@@ -5,6 +5,7 @@ namespace VictorOpusculo\Eadpi\Lib\Model\Courses;
 use mysqli;
 use VOpus\PhpOrm\DataEntity;
 use VOpus\PhpOrm\DataProperty;
+use VOpus\PhpOrm\SqlSelector;
 
 class Test extends DataEntity
 {
@@ -33,5 +34,20 @@ class Test extends DataEntity
     {
         $this->questions = (new TestQuestion([ 'test_id' => $this->properties->id->getValue()->unwrapOr(0) ]))->getAllFromTest($conn);
         return $this;
+    }
+
+    public function getAllFromIdAndTypeLinked(mysqli $conn) : array
+    {
+        $selector = $this->getGetSingleSqlSelector()
+        ->clearValues()
+        ->clearWhereClauses()
+        ->addWhereClause("{$this->getWhereQueryColumnName('linked_to_type')} = ? ")
+        ->addWhereClause(" AND {$this->getWhereQueryColumnName('linked_to_id')} = ? ")
+        ->addValue('s', $this->properties->linked_to_type->getValue()->unwrapOr(''))
+        ->addValue('i', $this->properties->linked_to_id->getValue()->unwrapOr(0))
+        ->setOrderBy('id');
+
+        $drs = $selector->run($conn, SqlSelector::RETURN_ALL_ASSOC);
+        return array_map([ $this, 'newInstanceFromDataRow' ], $drs);
     }
 }

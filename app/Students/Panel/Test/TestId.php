@@ -26,6 +26,7 @@ class TestId extends Component
                 throw new \Exception("ID inválido!");
 
             $test = (new Test([ 'id' => $this->id ]))->getSingle($conn);
+            $this->test = $test;
             $subsGetter = new Subscription([ 'student_id' => $_SESSION['user_id'] ?? 0, 'course_id' => $test->course_id->unwrapOr(0) ]);
             $isSubscribed = $subsGetter->isStudentSubscribed($conn);
 
@@ -37,6 +38,7 @@ class TestId extends Component
                 throw new \Exception("Não há questões neste teste.");
 
             $this->subscription = $subsGetter->getSingleFromStudentAndCourse($conn);
+            $this->subscription->fetchCourse($conn);
  
             if ($test->linked_to_type->unwrapOr('') === 'lesson' && $test->linked_to_id->unwrapOr(0))
             {
@@ -106,9 +108,11 @@ class TestId extends Component
                 tag('h1', children: text('Teste')),
                 tag('p', class: 'text-center font-bold', children: text($this->test->title->unwrapOr("Teste sem nome"))),
                 tag('p', class: 'text-center', children: text("Clique no botão abaixo para iniciar o teste.")),
-                tag('a', class: 'btn mt-4', 
-                    href: URLGenerator::generatePageUrl("/students/panel/test/{$this->test->id->unwrapOr(0)}/{$this->test->questions[0]->id->unwrapOr(0)}"), 
-                    children: text('Iniciar')
+                tag('div', class: 'text-center', children:
+                    tag('a', class: 'btn mt-4', 
+                        href: URLGenerator::generatePageUrl("/students/panel/test/{$this->test->id->unwrapOr(0)}/{$this->test->questions[0]->id->unwrapOr(0)}"), 
+                        children: text('Iniciar')
+                    )
                 )
             ]);
         else

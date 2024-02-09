@@ -24,8 +24,8 @@ class TestQuestion extends DataEntity
         parent::__construct($initialValues);
     }
 
-    protected string $databaseTable = 'test_question';
-    protected string $formFieldPrefixName = 'test_question';
+    protected string $databaseTable = 'test_questions';
+    protected string $formFieldPrefixName = 'test_questions';
     protected array $primaryKeys = ['id']; 
 
     public function getAllFromTest(mysqli $conn) : array

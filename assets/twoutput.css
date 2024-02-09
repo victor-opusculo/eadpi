@@ -1096,10 +1096,6 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   padding-left: 2rem;
 }
 
-.pt-2 {
-  padding-top: 0.5rem;
-}
-
 .text-center {
   text-align: center;
 }

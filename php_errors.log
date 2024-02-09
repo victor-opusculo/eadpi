@@ -23037,3 +23037,25 @@ Stack trace:
 #4 C:\inetpub\wwwroot\eadpi\api.php(104): VictorOpusculo\PComp\RouteHandler->run(NULL)
 #5 {main}
   thrown in C:\inetpub\wwwroot\eadpi\VOpusPhpOrm\DataProperty.php on line 60
+[08-Feb-2024 22:47:15 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Typed property VictorOpusculo\Eadpi\Lib\Model\Students\Subscription::$course must not be accessed before initialization in C:\inetpub\wwwroot\eadpi\app\Students\Panel\Test\TestId.php:75
+Stack trace:
+#0 C:\Users\Victor\source\php\PComp\src\Component.php(21): VictorOpusculo\Eadpi\App\Students\Panel\Test\TestId->markup()
+#1 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#2 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\Eadpi\App\Students\Panel\Test\TestId))
+#3 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#4 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#5 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#6 C:\Users\Victor\source\php\PComp\src\Component.php(23): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#7 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#8 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\Eadpi\App\Students\Panel\PanelLayout))
+#9 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#10 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#11 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#12 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#13 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#14 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#15 C:\Users\Victor\source\php\PComp\src\Component.php(23): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#16 C:\Users\Victor\source\php\PComp\src\AppInitializer.php(108): VictorOpusculo\PComp\Component->prepareSetUp()
+#17 C:\inetpub\wwwroot\eadpi\index.php(9): VictorOpusculo\PComp\AppInitializer->__construct(Array)
+#18 {main}
+  thrown in C:\inetpub\wwwroot\eadpi\app\Students\Panel\Test\TestId.php on line 75

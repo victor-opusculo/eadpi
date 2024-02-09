@@ -46,4 +46,10 @@ class Lesson extends DataEntity
         $drs = $selector->run($conn, SqlSelector::RETURN_ALL_ASSOC);
         return array_map([ $this, 'newInstanceFromDataRow'], $drs);
     }
+
+    public function getLinkedTests(mysqli $conn) : array
+    {
+        $getter = (new Test([ 'linked_to_type' => 'lesson', 'linked_to_id' => $this->properties->id->getValue()->unwrapOr(0) ]));   
+        return $getter->getAllFromIdAndTypeLinked($conn);
+    }
 }

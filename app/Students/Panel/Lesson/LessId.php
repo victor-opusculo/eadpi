@@ -10,6 +10,7 @@ use VictorOpusculo\Eadpi\Lib\Model\Students\Subscription;
 use VictorOpusculo\PComp\Component;
 use VictorOpusculo\Eadpi\Lib\Helpers\URLGenerator;
 use VictorOpusculo\Eadpi\Lib\Model\Courses\LessonBlock;
+use VictorOpusculo\Eadpi\Lib\Model\Courses\Test;
 
 use function VictorOpusculo\PComp\Prelude\{component, tag, text, rawText};
 use VictorOpusculo\PComp\Context;
@@ -38,6 +39,8 @@ class LessId extends Component
             $this->module = $module;
             $this->subscription = $subscriptionGetter->getSingleFromStudentAndCourse($conn);
             $this->subscription->fetchCourse($conn);
+
+            $this->tests = $this->lesson->getLinkedTests($conn);
             
             HeadManager::$title = $this->lesson->title->unwrapOr('Aula sem nome');
 
@@ -49,6 +52,7 @@ class LessId extends Component
     }
 
     protected $id;
+    private array $tests = [];
     private ?Lesson $lesson;
     private ?Module $module;
     private ?Subscription $subscription;
@@ -90,7 +94,22 @@ class LessId extends Component
                 tag('section', class: 'block rounded border border-neutral-300 dark:border-neutral-700 p-4 m-2 w-full bg-neutral-100 dark:bg-neutral-800', children:
                 [
                     ...array_map(fn(LessonBlock $block) => component(LessonBlockSection::class, block: $block), $this->lesson->blocks) 
-                ])
+                ]),
+
+                count($this->tests) > 0 ?
+                    tag('section', class: 'block rounded border border-neutral-300 dark:border-neutral-700 p-4 m-2 w-full bg-neutral-100 dark:bg-neutral-800', children:
+                    [
+                        tag('h2', children: text('Testes')),
+                        ...array_map(fn(Test $test) => 
+                            tag('a', 
+                            class: 'link', 
+                            href: URLGenerator::generatePageUrl("/students/panel/test/{$test->id->unwrapOr(0)}"), 
+                            children: text($test->title->unwrapOr("Teste sem nome"))
+                            ), $this->tests
+                        )
+                    ])
+                :
+                    null
             ]);
         else
             return null;
