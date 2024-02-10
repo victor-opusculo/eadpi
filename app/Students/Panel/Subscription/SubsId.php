@@ -90,7 +90,7 @@ class SubsId extends Component
                         ]),
                         component(Label::class, labelBold: true, label: "Pontuação nos testes", children:
                         [
-                            text($this->scored . ' de ' . $this->minScoreRequired . ' requerido (máximo possível: ' . $this->maxScorePossible . ')')
+                            text($this->scored . ' de ' . $this->minScoreRequired . ' requerido')
                         ]),
                         component(Label::class, labelBold: true, label: "Resultado", children:
                         [

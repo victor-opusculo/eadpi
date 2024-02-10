@@ -23059,3 +23059,71 @@ Stack trace:
 #17 C:\inetpub\wwwroot\eadpi\index.php(9): VictorOpusculo\PComp\AppInitializer->__construct(Array)
 #18 {main}
   thrown in C:\inetpub\wwwroot\eadpi\app\Students\Panel\Test\TestId.php on line 75
+[09-Feb-2024 19:11:50 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function unwrapOr() on null in C:\inetpub\wwwroot\eadpi\app\Students\Panel\Test\TestId\QuestionId.php:28
+Stack trace:
+#0 C:\Users\Victor\source\php\PComp\src\Component.php(20): VictorOpusculo\Eadpi\App\Students\Panel\Test\TestId\QuestionId->setUp()
+#1 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#2 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\Eadpi\App\Students\Panel\Test\TestId\QuestionId))
+#3 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#4 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#5 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#6 C:\Users\Victor\source\php\PComp\src\Component.php(23): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#7 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#8 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\Eadpi\App\Students\Panel\PanelLayout))
+#9 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#10 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#11 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#12 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#13 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#14 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#15 C:\Users\Victor\source\php\PComp\src\Component.php(23): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#16 C:\Users\Victor\source\php\PComp\src\AppInitializer.php(108): VictorOpusculo\PComp\Component->prepareSetUp()
+#17 C:\inetpub\wwwroot\eadpi\index.php(9): VictorOpusculo\PComp\AppInitializer->__construct(Array)
+#18 {main}
+  thrown in C:\inetpub\wwwroot\eadpi\app\Students\Panel\Test\TestId\QuestionId.php on line 28
+[09-Feb-2024 19:29:39 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method VOpus\PhpOrm\DataProperty::unwrapOr() in C:\inetpub\wwwroot\eadpi\lib\Model\Students\CompletedTestQuestion.php:69
+Stack trace:
+#0 C:\inetpub\wwwroot\eadpi\app\Students\Panel\Test\TestId\QuestionId.php(46): VictorOpusculo\Eadpi\Lib\Model\Students\CompletedTestQuestion->getSingleFromQuestionIdAndSubscription(Object(mysqli))
+#1 C:\Users\Victor\source\php\PComp\src\Component.php(20): VictorOpusculo\Eadpi\App\Students\Panel\Test\TestId\QuestionId->setUp()
+#2 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#3 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\Eadpi\App\Students\Panel\Test\TestId\QuestionId))
+#4 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#5 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#6 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#7 C:\Users\Victor\source\php\PComp\src\Component.php(23): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#8 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#9 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\Eadpi\App\Students\Panel\PanelLayout))
+#10 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#11 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#12 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#13 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#14 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#15 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#16 C:\Users\Victor\source\php\PComp\src\Component.php(23): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#17 C:\Users\Victor\source\php\PComp\src\AppInitializer.php(108): VictorOpusculo\PComp\Component->prepareSetUp()
+#18 C:\inetpub\wwwroot\eadpi\index.php(9): VictorOpusculo\PComp\AppInitializer->__construct(Array)
+#19 {main}
+  thrown in C:\inetpub\wwwroot\eadpi\lib\Model\Students\CompletedTestQuestion.php on line 69
+[09-Feb-2024 19:49:38 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method VOpus\PhpOrm\DataProperty::unwrapOr() in C:\inetpub\wwwroot\eadpi\lib\Model\Courses\TestQuestion.php:46
+Stack trace:
+#0 C:\inetpub\wwwroot\eadpi\app\Students\Panel\Test\TestId\QuestionId.php(142): VictorOpusculo\Eadpi\Lib\Model\Courses\TestQuestion->decodeOptions()
+#1 C:\Users\Victor\source\php\PComp\src\Component.php(21): VictorOpusculo\Eadpi\App\Students\Panel\Test\TestId\QuestionId->markup()
+#2 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#3 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\Eadpi\App\Students\Panel\Test\TestId\QuestionId))
+#4 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#5 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#6 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#7 C:\Users\Victor\source\php\PComp\src\Component.php(23): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#8 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#9 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\Eadpi\App\Students\Panel\PanelLayout))
+#10 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#11 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#12 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#13 C:\Users\Victor\source\php\PComp\src\Component.php(24): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#14 C:\Users\Victor\source\php\PComp\src\Component.php(30): VictorOpusculo\PComp\Component->prepareSetUp()
+#15 C:\Users\Victor\source\php\PComp\src\Component.php(34): VictorOpusculo\PComp\Component->prepareSetupForArrays(Object(VictorOpusculo\PComp\HtmlTag))
+#16 C:\Users\Victor\source\php\PComp\src\Component.php(23): VictorOpusculo\PComp\Component->prepareSetupForArrays(Array)
+#17 C:\Users\Victor\source\php\PComp\src\AppInitializer.php(108): VictorOpusculo\PComp\Component->prepareSetUp()
+#18 C:\inetpub\wwwroot\eadpi\index.php(9): VictorOpusculo\PComp\AppInitializer->__construct(Array)
+#19 {main}
+  thrown in C:\inetpub\wwwroot\eadpi\lib\Model\Courses\TestQuestion.php on line 46

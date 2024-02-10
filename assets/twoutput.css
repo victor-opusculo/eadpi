@@ -954,6 +954,10 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   list-style-type: disc;
 }
 
+.list-decimal {
+  list-style-type: decimal;
+}
+
 .flex-row {
   flex-direction: row;
 }
@@ -1096,8 +1100,16 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   padding-left: 2rem;
 }
 
+.pl-4 {
+  padding-left: 1rem;
+}
+
 .text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .text-justify {
@@ -1117,6 +1129,11 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .font-bold {

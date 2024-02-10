@@ -1,5 +1,5 @@
 <?php
-namespace VictorOpusculo\Eadpi\App\Students\Panel\Test;
+namespace VictorOpusculo\Eadpi\App\Students\Panel\Test\TestId;
 
 use VictorOpusculo\Eadpi\Components\Layout\DefaultPageFrame;
 use VictorOpusculo\Eadpi\Lib\Model\Courses\Test;

@@ -39,7 +39,8 @@ return
             [
                 '/[id]' => fn() =>
                 [
-                    '/' => \VictorOpusculo\Eadpi\App\Students\Panel\Test\TestId::class
+                    '/' => \VictorOpusculo\Eadpi\App\Students\Panel\Test\TestId\TestId::class,
+                    '/[questId]' => \VictorOpusculo\Eadpi\App\Students\Panel\Test\TestId\QuestionId::class
                 ]
             ],
             '__layout' => \VictorOpusculo\Eadpi\App\Students\Panel\PanelLayout::class

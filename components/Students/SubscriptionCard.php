@@ -43,7 +43,7 @@ class SubscriptionCard extends Component
                 tag('div', class: 'flex flex-row items-center' , children: 
                 [
                     tag('progress', class: 'h-2 w-[calc(100%-60px)]', value: $this->completedTestsCount, max: $this->allTestsCount, children: text((floor($this->completedTestsCount / $this->allTestsCount) * 100) . '%')),
-                    tag('span', class: 'w-[60px]', children: text((floor($this->completedTestsCount / $this->allTestsCount) * 100) . '%'))
+                    tag('span', class: 'w-[60px]', children: text(number_format(($this->completedTestsCount / $this->allTestsCount) * 100, 0) . '%'))
                 ])
             ])
         ]);

@@ -35,9 +35,19 @@ class TestQuestion extends DataEntity
         ->clearWhereClauses()
         ->addWhereClause("{$this->getWhereQueryColumnName('test_id')} = ?")
         ->addValue('i', $this->properties->test_id->getValue()->unwrapOr(0))
-        ->setOrderBy('id');
+        ->setOrderBy('id ASC');
 
         $drs = $selector->run($conn, SqlSelector::RETURN_ALL_ASSOC);
         return array_map([ $this, 'newInstanceFromDataRow' ], $drs);
+    }
+
+    public function decodeOptions() : array
+    {
+        return json_decode($this->properties->options->getValue()->unwrapOr('[]'));
+    }
+
+    public function decodeCorrectAnswers() : array
+    {
+        return json_decode($this->properties->correct_answers->getValue()->unwrapOr('[]'));
     }
 }

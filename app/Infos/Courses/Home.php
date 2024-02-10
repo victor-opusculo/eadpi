@@ -12,7 +12,7 @@ class Home extends Component
     protected function setUp()
     {
         $conn = Connection::get();
-        $this->courses = (new Course)->getAll($conn); 
+        $this->courses = array_filter((new Course)->getAll($conn), fn(Course $c) => (bool)$c->is_visible->unwrapOr(0)); 
     }
 
     private array $courses = [];

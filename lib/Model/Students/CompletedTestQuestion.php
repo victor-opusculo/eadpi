@@ -58,4 +58,37 @@ class CompletedTestQuestion extends DataEntity
         $dr = $selector->run($conn, SqlSelector::RETURN_SINGLE_ASSOC);
         return [ (int)$dr['count'] ?? 0, (int)$dr["scored_points"] ?? 0, (int)$dr["total_points"] ?? 0 ];
     }
+
+    public function getSingleFromQuestionIdAndSubscription(mysqli $conn) : self|null
+    {
+        $selector = $this->getGetSingleSqlSelector()
+        ->clearValues()
+        ->clearWhereClauses()
+        ->addWhereClause("{$this->getWhereQueryColumnName('question_id')} = ?")
+        ->addWhereClause(" AND {$this->getWhereQueryColumnName('subscription_id')} = ?")
+        ->addValue('i', $this->properties->question_id->getValue()->unwrapOr(0))
+        ->addValue('i', $this->properties->subscription_id->getValue()->unwrapOr(0))
+        ->setOrderBy("completed_at DESC");
+
+        $dr = $selector->run($conn, SqlSelector::RETURN_SINGLE_ASSOC);
+
+        if (isset($dr))
+            return $this->newInstanceFromDataRow($dr);
+        else   
+            return null;
+    }
+
+    public function registerAttempt(array $studentAnswers, array $correctAnswers) : self
+    {
+        $this->properties->attempts->setValue($this->properties->attempts->getValue()->unwrapOr(0) + 1);
+        $this->properties->completed_at->setValue(gmdate('Y-m-d H:i:s'));
+        $this->properties->answers->setValue(json_encode($studentAnswers));
+
+        $allCorrect = true;
+        foreach ($correctAnswers as $corr)
+            $allCorrect = $allCorrect && (array_search($corr, $studentAnswers) !== false);
+
+        $this->properties->is_correct->setValue($allCorrect ? 1 : 0);
+        return $this;
+    }
 }
