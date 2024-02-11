@@ -58,7 +58,7 @@ final class URLGenerator
 		return match (self::$useFriendlyUrls)
 		{
 			true => self::BASE_URL . '/--api' . ($apiPath[0] == '/' ? $apiPath . $qs : '/' . $apiPath . $qs),
-			false => self::BASE_URL . "/api.php?page=$apiPath$qs"
+			false => self::BASE_URL . "/api.php?route=$apiPath$qs"
 		};
 	}
 

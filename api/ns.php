@@ -23,5 +23,15 @@ return
     '/certificate' => fn() =>
     [
         '/auth' => Certificate\Auth::class
+    ],
+    '/administrator' => fn() =>
+    [
+        '/login' => Administrator\Login::class,
+        '/logout' => Administrator\Logout::class,
+        '/report' => fn() =>
+        [
+            '/course_subscriptions' => Administrator\Report\CourseSubscriptions::class
+        ],
+        '/[id]' => Administrator\AdminId::class
     ]
 ];

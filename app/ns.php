@@ -52,6 +52,17 @@ return
     [
         '/auth' => \VictorOpusculo\Eadpi\App\Certificate\Auth::class
     ],
+    '/admin' => fn() =>
+    [
+        '/' => \VictorOpusculo\Eadpi\App\Admin\Login::class,
+        '/login' => \VictorOpusculo\Eadpi\App\Admin\Login::class,
+        '/panel' => fn() =>
+        [
+            '/' => \VictorOpusculo\Eadpi\App\Admin\Panel\PanelHome::class,
+            '/edit_profile' => \VictorOpusculo\Eadpi\App\Admin\Panel\EditProfile::class,
+            '__layout' => \VictorOpusculo\Eadpi\App\Admin\Panel\PanelLayout::class
+        ]
+    ],
     '__layout' => BaseLayout::class,
     '__error' => BaseError::class
 ];

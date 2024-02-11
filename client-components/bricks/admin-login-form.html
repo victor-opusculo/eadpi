@@ -1,0 +1,48 @@
+
+<script>
+    const state = 
+    { 
+        password: "",
+        email: "" 
+    };
+
+    const methods = 
+    {
+        submit(e)
+        {
+            e.preventDefault();
+            const headers = new Headers({ 'Content-Type': 'application/json' });
+            const body = JSON.stringify({ data: { email: this.state.email, password: this.state.password } });
+            fetch(EADPI.Helpers.URLGenerator.generateApiUrl('/administrator/login'), { method: 'POST', headers, body })
+            .then(res => res.json())
+            .then(json => { EADPI.Alerts.pushFromJsonResult(json); if (json.success) window.location.href = EADPI.Helpers.URLGenerator.generatePageUrl('/admin/panel'); })
+            .catch(reason => EADPI.Alerts.push(EADPI.Alerts.types.error, String(reason)));
+
+            return true;
+        },
+
+        changeEmail(e)
+        {
+            this.render({ ...this.state, email: e.target.value });
+        },
+
+        changePassword(e)
+        {
+            this.render({ ...this.state, password: e.target.value }); 
+        }
+    };
+</script>
+
+<template>
+    <form class="mx-auto max-w-[500px]">
+        <ext-label label="E-mail">
+            <input type="email" class="w-full" :value="state.email" @input="changeEmail">
+        </ext-label>
+        <ext-label label="Senha">
+            <input type="password" class="w-full" :value="state.password" @input="changePassword">
+        </ext-label>
+        <div class="text-center">
+            <button class="btn" type="submit" @click="submit">Entrar</button>
+        </div>
+    </form>
+</template>

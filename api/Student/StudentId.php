@@ -8,12 +8,14 @@ use VictorOpusculo\Eadpi\Lib\Model\Students\Student;
 use VictorOpusculo\PComp\RouteHandler;
 
 require_once __DIR__ . '/../../lib/Middlewares/JsonBodyParser.php';
+require_once __DIR__ . '/../../lib/Middlewares/StudentLoginCheck.php';
 
 class StudentId extends RouteHandler
 {
     public function __construct()
     {
         $this->middlewares[] = '\VictorOpusculo\Eadpi\Lib\Middlewares\jsonParser';
+        $this->middlewares[] = '\VictorOpusculo\Eadpi\Lib\Middlewares\studentLoginCheck';
     }
 
     protected $id;

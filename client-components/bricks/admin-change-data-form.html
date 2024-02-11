@@ -1,0 +1,93 @@
+<script>
+    const state = 
+    {
+        fullname: '',
+        email: '',
+        password: '',
+        password2: '',
+        adminid: 0,
+        currpassword: '',
+        slotId: ''
+    };
+
+    const methods =
+    {
+        nameChanged(e)
+        {
+            this.render({ ...this.state, fullname: e.target.value });
+        },
+
+        emailChanged(e)
+        {
+            this.render({ ...this.state, email: e.target.value });
+        },
+
+        currpasswordChanged(e)
+        {
+            this.render({ ...this.state, currpassword: e.target.value });
+        },
+
+        passwordChanged(e)
+        {
+            this.render({ ...this.state, password: e.target.value });
+        },
+
+        password2Changed(e)
+        {
+            this.render({ ...this.state, password2: e.target.value });
+        },
+
+        submit(e)
+        {
+            e.preventDefault();
+
+            if ((this.state.password || this.state.password2) && (this.state.password !== this.state.password2))
+            {
+                EADPI.Alerts.push(EADPI.Alerts.types.info, "As senhas não coincidem!");
+                return;
+            }
+
+            const data = {};
+            for (const prop in this.state)
+                data['administrators:' + prop] = this.state[prop];
+
+            const headers = new Headers({ 'Content-Type': 'application/json' });
+            const body = JSON.stringify({ data });
+            fetch(EADPI.Helpers.URLGenerator.generateApiUrl('/administrator/' + this.state.adminid), { method: 'PUT', headers, body })
+            .then(res => res.json())
+            .then(json =>
+            {
+                EADPI.Alerts.pushFromJsonResult(json);
+            })
+            .catch(reason => EADPI.Alerts.push(EADPI.Alerts.types.error, String(reason)));
+        }
+    };
+</script>
+
+<template>
+    <form class="mx-auto max-w-[700px]" @submit="submit">
+        <ext-label label="Nome completo">
+            <input type="text" required class="w-full" maxlength="140" :value="state.fullname" @input="nameChanged"/>
+        </ext-label>
+        <ext-label label="E-mail">
+            <input type="email" required class="w-full" maxlength="140" :value="state.email" @input="emailChanged"/>
+        </ext-label>
+
+        <fieldset class="fieldset">
+            <legend>Alterar senha</legend>
+            <ext-label label="Senha atual">
+                <input type="password" class="w-full" maxlength="140" :value="state.currpassword" @input="currpasswordChanged" />
+            </ext-label>
+            <ext-label label="Nova senha">
+                <input type="password" class="w-full" maxlength="140" :value="state.password" @input="passwordChanged"/>
+            </ext-label>
+            <ext-label label="Confirme a senha alterada">
+                <input type="password" class="w-full" maxlength="140" :value="state.password2" @input="password2Changed"/>
+            </ext-label>
+        </fieldset>
+        
+        <div class="text-center mt-4">
+            <button class="btn" type="submit">Alterar dados</button>
+        </div>
+    </form>
+</template>

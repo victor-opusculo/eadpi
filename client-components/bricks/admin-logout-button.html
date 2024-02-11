@@ -1,0 +1,22 @@
+
+<script>
+    const methods =
+    {
+        logout()
+        {
+            fetch(EADPI.Helpers.URLGenerator.generateApiUrl('/administrator/logout'))
+            .then(res => res.json())
+            .then(json => 
+            {
+                EADPI.Alerts.pushFromJsonResult(json);
+                if (json.success)
+                    window.location.href = EADPI.Helpers.URLGenerator.generatePageUrl('/admin/login');
+            })
+            .catch(reason => EADPI.Alerts.push(EADPI.Alerts.types.error, String(reason)));
+        }
+    };
+
+</script>
+<template>
+    <button class="btn" @click="logout" type="button">Sair</button>
+</template>

@@ -9,7 +9,12 @@ final class LogEngine
 	{
 		if (!empty($actionMessage))
 		{
-			$userEmail = $_SESSION['user_email'] ?? "Anônimo";
+			$userEmail = match ($_SESSION['user_type'] ?? '')
+			{
+				UserTypes::administrator => "Admin: " . ($_SESSION['user_email'] ?? "Admin: Anônimo") . ". ID: " . ($_SESSION['user_id'] ?? 0),
+				UserTypes::student => "Aluno: " . ($_SESSION['user_email'] ?? "Aluno: Anônimo") . ". ID: " . ($_SESSION['user_id'] ?? 0),
+				default => 'Desconhecido'
+			};
 		
 			$logData =
 			[
