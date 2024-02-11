@@ -29,8 +29,9 @@ class CourseSubscriptions
         ->addSelectColumn("aes_decrypt(students.email, '$cryptoKey') as studentEmail")  
         ->addSelectColumn("(select count(DISTINCT student_completed_test_questions.id) from student_completed_test_questions where student_id = students.id) as answeredQuestions")  
         ->addSelectColumn("(select count(DISTINCT test_questions.id) 
-        from test_questions inner join course_tests on course_tests.course_id = student_subscriptions.course_id 
-        where test_questions.test_id = course_tests.id) as totalQuestions") 
+        from test_questions 
+        inner join course_tests 
+        where test_questions.test_id = course_tests.id AND course_tests.course_id = student_subscriptions.course_id) as totalQuestions") 
         ->addSelectColumn("(select sum(if(student_completed_test_questions.is_correct, test_questions.points, 0)) 
         from student_completed_test_questions
         INNER join test_questions on test_questions.id = student_completed_test_questions.question_id
