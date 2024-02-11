@@ -42,6 +42,6 @@ EADPI.Helpers.URLGenerator =
 
     generateQueryString(queryData)
     {
-        return Object.entries(queryData).reduce( (prev, [ currKey, currVal ]) => (prev ? '&' : '') + `${currKey}=${encodeURI(currVal)}`, '');
+        return Object.entries(queryData).reduce( (prev, [ currKey, currVal ]) => (prev ? prev + '&' : '') + `${currKey}=${encodeURI(currVal)}`, '');
     }
 };

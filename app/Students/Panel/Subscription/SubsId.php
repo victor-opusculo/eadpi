@@ -106,7 +106,7 @@ class SubsId extends Component
                         $this->approved ?
                             component(Label::class, labelBold: true, label: "Certificado", children:
                             [
-                                tag('a', class: 'btn', href: URLGenerator::generateScriptUrl('certificates/generate.php', [ 'subscription_id' => $this->subscription->id->unwrapOr(0) ]), children: text('Gerar'))
+                                tag('a', class: 'btn', href: URLGenerator::generateScriptUrl('certificate/generate.php', [ 'subscription_id' => $this->subscription->id->unwrapOr(0) ]), children: text('Gerar'))
                             ])
                         :
                         null

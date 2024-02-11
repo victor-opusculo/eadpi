@@ -1,0 +1,76 @@
+
+<script>
+    const state =
+    {
+        code: null,
+        date: null,
+        time: null,
+
+        result:
+        {
+            valid: null,
+            message: null,
+            studentName: null,
+            courseName: null,
+            studentPoints: null,
+            minPointsRequired: null,
+            maxPointsPossible: null,
+
+            certId: null,
+            certDatetime: null
+        }
+    };
+
+    const methods =
+    {
+        onCodeChange(e) { this.render({ ...this.state, code: e.target.value }); },
+        onDateChange(e) { this.render({ ...this.state, date: e.target.value }); },
+        onTimeChange(e) { this.render({ ...this.state, time: e.target.value }); },
+
+        onSubmit(e)
+        {
+            e.preventDefault();
+
+            fetch(EADPI.Helpers.URLGenerator.generateApiUrl('/certificate/auth', { code: this.state.code, datetime: `${this.state.date} ${this.state.time}`} ))
+            .then(res => res.json())
+            .then(json =>
+            {
+                if (json.success && json.data)
+                    this.render({ ...this.state, result: { valid: true, message: json.success, ...json.data }});
+                else if (json.error)
+                    this.render({ ...this.state, result: { valid: false, message: json.error }});
+            })
+            .catch(reason => EADPI.Alerts.push(EADPI.Alerts.types.error, String(reason)));
+        }
+    };
+</script>
+
+<template>
+    <form class="max-w-[700px] mx-auto" @submit="onSubmit">
+        <ext-label label="Código">
+            <input type="number" required :value="state.code" @input="onCodeChange" min="1" step="1" />
+        </ext-label>
+        <ext-label label="Data e hora de emissão">
+            <input type="date" required :value="state.date" @input="onDateChange" />
+            <input type="time" required :value="state.time" step="1" @input="onTimeChange" />
+        </ext-label>
+        <div class="text-center">
+            <button type="submit" class="btn">Verificar</button>
+        </div>
+    </form>
+    <div :if="state.result.valid" class="max-w-[700px] mx-auto">
+        <p class="my-4 text-green-700 dark:text-green-300 text-center">${state.result.message}</p>
+        <div>
+            <ext-label label="Aluno" labelbold="1">${state.result.studentName}</ext-label>
+            <ext-label label="Curso" labelbold="1">${state.result.courseName}</ext-label>
+            <ext-label label="Pontuação" labelbold="1">${state.result.studentPoints} de ${state.result.minPointsRequired} mínimo requerido (máximo de: ${state.result.maxPointsPossible})</ext-label>
+            <ext-label label="Nota" labelbold="1">${Math.floor(state.result.studentPoints / state.result.maxPointsPossible * 100)}%</ext-label>
+            
+            <ext-label label="Código do certificado" labelbold="1">${state.result.certId}</ext-label>
+            <ext-label label="Emissão inicial do certificado" labelbold="1">${state.result.certDatetime}</ext-label>
+        </div>
+    </div>
+    <div :if="state.result.valid === false" class="max-w-[700px] mx-auto">
+        <p class="my-4 text-red-700 dark:text-red-300 text-center">${state.result.message}</p>
+    </div>
+</template>

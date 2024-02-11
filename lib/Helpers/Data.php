@@ -5,6 +5,12 @@ final class Data
 {
     public function __construct() { }
 
+    public static function getMailConfigs()
+    {
+        $configs = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . "/eadpi_config.ini", true);
+        return $configs['regularmail'];
+    }
+
     public static function truncateText(?string $string, int $maxLength) : string
     {
         if (!$string) return '';

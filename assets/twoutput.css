@@ -545,7 +545,7 @@ table td {
   line-height: 1.75rem;
 }
 
-input[type='text'], input[type='password'], input[type='email'], input[type='search'], input[type='date'], textarea, select {
+input[type='text'], input[type='password'], input[type='email'], input[type='search'], input[type='date'], input[type='time'], input[type='number'], textarea, select {
   border-radius: 0.25rem;
   border-width: 1px;
   --tw-border-opacity: 1;
@@ -553,7 +553,7 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   padding: 0.25rem;
 }
 
-:is(.dark input[type='text']),:is(.dark  input[type='password']),:is(.dark  input[type='email']),:is(.dark  input[type='search']),:is(.dark  input[type='date']),:is(.dark  textarea),:is(.dark  select) {
+:is(.dark input[type='text']),:is(.dark  input[type='password']),:is(.dark  input[type='email']),:is(.dark  input[type='search']),:is(.dark  input[type='date']),:is(.dark  input[type='time']),:is(.dark  input[type='number']),:is(.dark  textarea),:is(.dark  select) {
   --tw-border-opacity: 1;
   border-color: rgb(115 115 115 / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
@@ -719,6 +719,13 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
 .link:active {
   --tw-brightness: brightness(.5);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.fieldset {
+  margin: 0.5rem;
+  border-radius: 0.375rem;
+  border-width: 2px;
+  padding: 0.5rem;
 }
 
 .absolute {
@@ -950,12 +957,12 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   cursor: pointer;
 }
 
-.list-disc {
-  list-style-type: disc;
-}
-
 .list-decimal {
   list-style-type: decimal;
+}
+
+.list-disc {
+  list-style-type: disc;
 }
 
 .flex-row {
@@ -1096,12 +1103,17 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   padding-bottom: 0.5rem;
 }
 
-.pl-8 {
-  padding-left: 2rem;
+.py-1\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
 }
 
 .pl-4 {
   padding-left: 1rem;
+}
+
+.pl-8 {
+  padding-left: 2rem;
 }
 
 .text-center {
@@ -1126,14 +1138,14 @@ input[type='text'], input[type='password'], input[type='email'], input[type='sea
   line-height: 1.75rem;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .font-bold {

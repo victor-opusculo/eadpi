@@ -2,6 +2,7 @@
 
 namespace VictorOpusculo\Eadpi\Lib\Model\Students;
 
+use DateTime;
 use Exception;
 use mysqli;
 use VictorOpusculo\Eadpi\Lib\Model\Courses\Course;
@@ -106,5 +107,16 @@ class Subscription extends DataEntity
             ]
         );
         return $getter->getCountFromSubscriptionAndStudent($conn);
+    }
+
+    public function getCompletedTestLastDateTime(mysqli $conn) : DateTime
+    {
+        $getter = new CompletedTestQuestion(
+            [ 
+                'student_id' => $this->properties->student_id->getValue()->unwrapOr(0),
+                'subscription_id' => $this->properties->id->getValue()->unwrapOr(0)
+            ]
+        );
+        return $getter->getLastCompletedTestDatetimeFromSubscription($conn);
     }
 }

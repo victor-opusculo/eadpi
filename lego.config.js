@@ -7,7 +7,7 @@ export default {
    
     Component.prototype.render = function(state)
     {
-      const childs = Array.from(this.children);
+      const childs = Array.from(this.childNodes);
       this.__originalChildren = childs.length && !this.__originalChildren?.length ? childs : this.__originalChildren;
 
        this.__state.slotId = \`slot_\${performance.now().toString().replace('.','')}_\${Math.floor(Math.random() * 1000)}\`;

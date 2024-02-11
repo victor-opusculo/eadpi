@@ -13,6 +13,7 @@ use VictorOpusculo\Eadpi\Lib\Model\Students\CompletedTestQuestion;
 use VictorOpusculo\Eadpi\Lib\Model\Students\Subscription;
 use VictorOpusculo\PComp\Component;
 use VictorOpusculo\PComp\Context;
+use VictorOpusculo\PComp\HeadManager;
 
 use function VictorOpusculo\PComp\Prelude\component;
 use function VictorOpusculo\PComp\Prelude\rawText;
@@ -27,6 +28,8 @@ class QuestionId extends Component
         $conn = Connection::get();
         try
         {
+            HeadManager::$title = "Teste";
+            
             if (!is_numeric($this->questId) || !is_numeric($this->id))
                 throw new \Exception("ID inválido.");
 

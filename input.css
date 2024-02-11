@@ -16,7 +16,7 @@
     table th { @apply text-center text-xl font-bold }
     table td { @apply text-left text-lg }
 
-    input[type='text'], input[type='password'], input[type='email'], input[type='search'], input[type='date'], textarea, select
+    input[type='text'], input[type='password'], input[type='email'], input[type='search'], input[type='date'], input[type='time'], input[type='number'], textarea, select
     {
         @apply border border-neutral-700 rounded p-1 dark:border-neutral-500 dark:text-white dark:bg-zinc-950
     }

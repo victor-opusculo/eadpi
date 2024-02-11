@@ -2,24 +2,24 @@
 <script>
     const state = 
     {
-        lineBreak: false,
+        linebreak: false,
         reverse: false,
-        labelBold: false,
+        labelbold: false,
         label: "...",
         slotId: ''
     }
 </script>
 
 <template>
-    <label class="flex m-2 ${state.lineBreak ? 'flex-col' : 'flex-row items-center'}">
-            <span :if="!state.reverse" class="shrink mr-2 text-base ${state.labelBold ? 'font-bold' : ''}">${state.label}: </span>
+    <label class="flex m-2 ${state.linebreak ? 'flex-col' : 'flex-row items-center'}">
+            <span :if="!state.reverse" class="shrink mr-2 text-base ${state.labelbold ? 'font-bold' : ''}">${state.label}: </span>
             <span :if="!state.reverse" class="grow text-base flex flex-row flex-wrap">
-                <slot class="inlinw-block w-full" id="${state.slotId}"></slot>
+                <slot class="inline-block w-full" id="${state.slotId}"></slot>
             </span>
 
             <span :if="state.reverse" class="text-base">
                 <slot class="inline-block w-full" id="${state.slotId}"></slot>
             </span>
-            <span :if="state.reverse" class="ml-2 text-base ${state.labelBold ? 'font-bold' : ''}"> ${state.label}</span>
+            <span :if="state.reverse" class="ml-2 text-base ${state.labelbold ? 'font-bold' : ''}"> ${state.label}</span>
     </label>
 </template>

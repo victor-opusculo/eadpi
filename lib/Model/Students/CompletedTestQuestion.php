@@ -2,6 +2,8 @@
 
 namespace VictorOpusculo\Eadpi\Lib\Model\Students;
 
+use DateTime;
+use DateTimeZone;
 use mysqli;
 use VOpus\PhpOrm\DataEntity;
 use VOpus\PhpOrm\DataProperty;
@@ -76,6 +78,18 @@ class CompletedTestQuestion extends DataEntity
             return $this->newInstanceFromDataRow($dr);
         else   
             return null;
+    }
+
+    public function getLastCompletedTestDatetimeFromSubscription(mysqli $conn) : DateTime
+    {
+        $selector = (new SqlSelector)
+        ->addSelectColumn("MAX(completed_at) AS maxDateTime")
+        ->setTable($this->databaseTable)
+        ->addWhereClause("{$this->getWhereQueryColumnName('subscription_id')} = ?")
+        ->addValue('i', $this->properties->subscription_id->getValue()->unwrapOr(0));
+
+        $dt = $selector->run($conn, SqlSelector::RETURN_FIRST_COLUMN_VALUE);
+        return new DateTime($dt, new DateTimeZone("UTC"));
     }
 
     public function registerAttempt(array $studentAnswers, array $correctAnswers) : self

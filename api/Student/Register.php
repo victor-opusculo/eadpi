@@ -34,7 +34,10 @@ final class Register extends RouteHandler
            $result = $student->save($conn);
             
             if ($result['newId'])
+            {
+                LogEngine::writeLog("Cadastro de aluno feito! Aluno ID: {$result['newId']}.");
                 $this->json([ 'success' => 'Cadastro efetuado com sucesso! Você pode entrar com sua conta agora.' ]);
+            }
             else
                 throw new Exception("Não foi possível criar o cadastro!");
         }

@@ -23127,3 +23127,19 @@ Stack trace:
 #18 C:\inetpub\wwwroot\eadpi\index.php(9): VictorOpusculo\PComp\AppInitializer->__construct(Array)
 #19 {main}
   thrown in C:\inetpub\wwwroot\eadpi\lib\Model\Courses\TestQuestion.php on line 46
+[10-Feb-2024 19:46:45 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function getHttpProtocolName() in C:\inetpub\wwwroot\eadpi\lib\Mail\email-base-body.php:49
+Stack trace:
+#0 C:\inetpub\wwwroot\eadpi\lib\Model\Students\StudentOtp.php(91): require_once()
+#1 C:\inetpub\wwwroot\eadpi\api\Student\RecoverPassword\RequestOtp.php(32): VictorOpusculo\Eadpi\Lib\Model\Students\StudentOtp::sendEmail('916280', 'victor.ventura@...', 'Victor Opusculo...')
+#2 C:\Users\Victor\source\php\PComp\src\RouteHandler.php(47): VictorOpusculo\Eadpi\Api\Student\RecoverPassword\RequestOtp->POST()
+#3 C:\inetpub\wwwroot\eadpi\api.php(104): VictorOpusculo\PComp\RouteHandler->run(NULL)
+#4 {main}
+  thrown in C:\inetpub\wwwroot\eadpi\lib\Mail\email-base-body.php on line 49
+[10-Feb-2024 19:47:40 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined function getHttpProtocolName() in C:\inetpub\wwwroot\eadpi\lib\Mail\email-base-body.php:49
+Stack trace:
+#0 C:\inetpub\wwwroot\eadpi\lib\Model\Students\StudentOtp.php(91): require_once()
+#1 C:\inetpub\wwwroot\eadpi\api\Student\RecoverPassword\RequestOtp.php(32): VictorOpusculo\Eadpi\Lib\Model\Students\StudentOtp::sendEmail('641456', 'victor.ventura@...', 'Victor Opusculo...')
+#2 C:\Users\Victor\source\php\PComp\src\RouteHandler.php(47): VictorOpusculo\Eadpi\Api\Student\RecoverPassword\RequestOtp->POST()
+#3 C:\inetpub\wwwroot\eadpi\api.php(104): VictorOpusculo\PComp\RouteHandler->run(NULL)
+#4 {main}
+  thrown in C:\inetpub\wwwroot\eadpi\lib\Mail\email-base-body.php on line 49

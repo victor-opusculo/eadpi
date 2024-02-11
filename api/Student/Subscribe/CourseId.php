@@ -1,6 +1,7 @@
 <?php
 namespace VictorOpusculo\Eadpi\Api\Student\Subscribe;
 
+use VictorOpusculo\Eadpi\Lib\Helpers\LogEngine;
 use VictorOpusculo\Eadpi\Lib\Helpers\UserTypes;
 use VictorOpusculo\Eadpi\Lib\Model\Courses\Course;
 use VictorOpusculo\Eadpi\Lib\Model\Database\Connection;
@@ -42,10 +43,12 @@ class CourseId extends RouteHandler
         $result = $newSubs->save($conn);
         if ($result['newId'])
         {
+            LogEngine::writeLog("Inscrição em curso feita! Aluno ID: {$_SESSION['user_id']}. Curso ID: {$this->courseId}. Inscrição ID: {$result['newId']}.");
             $this->json([ 'success' => 'Você se inscreveu no curso!' ]);
         }
         else
         {
+            LogEngine::writeErrorLog("Erro ao inscrever aluno em curso. Aluno ID: {$_SESSION['user_id']}. Curso ID: {$this->courseId}");
             $this->json([ 'error' => 'Não foi possível se increver no curso. Contate o suporte da Escola do Parlamento.' ], 500);
         }
     }

@@ -12,6 +12,16 @@ return
         '/subscribe' => fn() =>
         [
             '/[courseId]' => Student\Subscribe\CourseId::class
-        ]
+        ],
+        '/recover_password' => fn() =>
+        [
+            '/request_otp' => Student\RecoverPassword\RequestOtp::class,
+            '/change_password' => Student\RecoverPassword\ChangePassword::class
+        ],
+        '/[id]' => Student\StudentId::class
+    ],
+    '/certificate' => fn() =>
+    [
+        '/auth' => Certificate\Auth::class
     ]
 ];

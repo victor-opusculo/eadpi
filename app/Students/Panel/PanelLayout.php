@@ -37,7 +37,11 @@ final class PanelLayout extends Component
                     tag('span', class: 'font-bold', children: text('Aluno(a) logado(a): ')),
                     text($_SESSION['user_name'] ?? '***')
                 ]),
-                tag('student-logout-button')
+                tag('span', children:
+                [
+                    tag('a', class: 'btn mr-2 inline-block', href: URLGenerator::generatePageUrl('/students/panel/edit_profile'), children: text('Alterar perfil')),
+                    tag('student-logout-button')
+                ])
             ]),
             tag('div', children: $this->children)
         ];

@@ -23,6 +23,7 @@ return
         '/panel' => fn() =>
         [
             '/' => \VictorOpusculo\Eadpi\App\Students\Panel\PanelHome::class,
+            '/edit_profile' => \VictorOpusculo\Eadpi\App\Students\Panel\EditProfile::class,
             '/subscription' => fn() => 
             [
                 '/[id]' => \VictorOpusculo\Eadpi\App\Students\Panel\Subscription\SubsId::class
@@ -44,7 +45,12 @@ return
                 ]
             ],
             '__layout' => \VictorOpusculo\Eadpi\App\Students\Panel\PanelLayout::class
-        ]
+        ],
+        '/recover_password' => \VictorOpusculo\Eadpi\App\Students\RecoverPassword::class
+    ],
+    '/certificate' => fn() =>
+    [
+        '/auth' => \VictorOpusculo\Eadpi\App\Certificate\Auth::class
     ],
     '__layout' => BaseLayout::class,
     '__error' => BaseError::class

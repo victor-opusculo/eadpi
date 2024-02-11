@@ -19,9 +19,9 @@ class Student extends DataEntity
         [
             'id' => new DataProperty(null, fn() => null, DataProperty::MYSQL_INT, false),
             'email' => new DataProperty('email', fn() => null, DataProperty::MYSQL_STRING, true),
-            'full_name' => new DataProperty('fullName', fn() => null, DataProperty::MYSQL_STRING, true),
+            'full_name' => new DataProperty('fullname', fn() => null, DataProperty::MYSQL_STRING, true),
             'password_hash' => new DataProperty(null, fn() => null, DataProperty::MYSQL_STRING, false),
-            'timezone' => new DataProperty('timeZone', fn() => 'America/Sao_Paulo', DataProperty::MYSQL_STRING, false),
+            'timezone' => new DataProperty('timezone', fn() => 'America/Sao_Paulo', DataProperty::MYSQL_STRING, false),
             'lgpd_term_version' => new DataProperty('lgpdtermversion', fn() => null, DataProperty::MYSQL_INT),
             'lgpd_term' => new DataProperty('lgpdTermText', fn() => null, DataProperty::MYSQL_STRING)
         ];
@@ -64,6 +64,21 @@ class Student extends DataEntity
 
         $count = $selector->run($conn, SqlSelector::RETURN_FIRST_COLUMN_VALUE);
         return (int)$count > 0;
+    }
+
+    public function existsAnotherStudentWithEmail(mysqli $conn) : bool
+    {
+        $selector = (new SqlSelector)
+        ->addSelectColumn("COUNT(*)")
+        ->setTable($this->databaseTable)
+        ->addWhereClause("{$this->getWhereQueryColumnName('email')} = lower(?) ")
+        ->addWhereClause(" AND {$this->getWhereQueryColumnName('id')} != ? ")
+        ->addValue('s', $this->properties->email->getValue()->unwrapOr(null))
+        ->addValue('i', $this->properties->id->getValue()->unwrapOr(null));
+
+        $count = $selector->run($conn, SqlSelector::RETURN_FIRST_COLUMN_VALUE);
+        return (int)$count > 0;
+
     }
 
     public function checkPassword(string $givenPassword) : bool

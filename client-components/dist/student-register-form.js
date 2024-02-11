@@ -5,7 +5,7 @@
    
     Component.prototype.render = function(state)
     {
-      const childs = Array.from(this.children);
+      const childs = Array.from(this.childNodes);
       this.__originalChildren = childs.length && !this.__originalChildren?.length ? childs : this.__originalChildren;
 
        this.__state.slotId = `slot_${performance.now().toString().replace('.','')}_${Math.floor(Math.random() * 1000)}`;
@@ -29,11 +29,11 @@
   
     const state =
     {
-        fullName: '',
+        fullname: '',
         email: '',
         password: '',
         password2: '',
-        timeZone: 'America/Sao_Paulo',
+        timezone: 'America/Sao_Paulo',
         lgpdConsentCheck: false,
         lgpdtermversion: 0,
         lgpdTermText: '',
@@ -44,7 +44,7 @@
     {
         nameChanged(e)
         {
-            this.render({ ...this.state, fullName: e.target.value });
+            this.render({ ...this.state, fullname: e.target.value });
         },
 
         emailChanged(e)
@@ -62,9 +62,9 @@
             this.render({ ...this.state, password2: e.target.value });
         },
 
-        timeZoneChanged(e)
+        timezoneChanged(e)
         {
-            this.render({ ...this.state, timeZone: e.target.value });
+            this.render({ ...this.state, timezone: e.target.value });
         },
 
         consentChecked(e)
@@ -111,7 +111,7 @@
     return [  
     h("form", {"class": `mx-auto max-w-[700px]`, "onsubmit": this.submit.bind(this)}, [
       h("ext-label", {"label": `Nome completo`}, [
-        h("input", {"type": `text`, "required": ``, "class": `w-full`, "maxlength": `140`, "value": state.fullName, "oninput": this.nameChanged.bind(this)}, "")
+        h("input", {"type": `text`, "required": ``, "class": `w-full`, "maxlength": `140`, "value": state.fullname, "oninput": this.nameChanged.bind(this)}, "")
       ]),
       h("ext-label", {"label": `E-mail`}, [
         h("input", {"type": `email`, "required": ``, "class": `w-full`, "maxlength": `140`, "value": state.email, "oninput": this.emailChanged.bind(this)}, "")
@@ -123,7 +123,7 @@
         h("input", {"type": `password`, "required": ``, "class": `w-full`, "maxlength": `140`, "value": state.password2, "oninput": this.password2Changed.bind(this)}, "")
       ]),
       h("ext-label", {"label": `Seu fuso horário`}, [
-        h("select", {"onchange": this.timeZoneChanged.bind(this)}, [
+        h("select", {"onchange": this.timezoneChanged.bind(this)}, [
           ((EADPI.Time.TimeZones).map((dtz) => (h("option", {"value": dtz, "selected": dtz === 'America/Sao_Paulo'}, `${dtz}`))))
         ])
       ]),

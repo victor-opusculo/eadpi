@@ -2,11 +2,11 @@
 <script>
     const state =
     {
-        fullName: '',
+        fullname: '',
         email: '',
         password: '',
         password2: '',
-        timeZone: 'America/Sao_Paulo',
+        timezone: 'America/Sao_Paulo',
         lgpdConsentCheck: false,
         lgpdtermversion: 0,
         lgpdTermText: '',
@@ -17,7 +17,7 @@
     {
         nameChanged(e)
         {
-            this.render({ ...this.state, fullName: e.target.value });
+            this.render({ ...this.state, fullname: e.target.value });
         },
 
         emailChanged(e)
@@ -35,9 +35,9 @@
             this.render({ ...this.state, password2: e.target.value });
         },
 
-        timeZoneChanged(e)
+        timezoneChanged(e)
         {
-            this.render({ ...this.state, timeZone: e.target.value });
+            this.render({ ...this.state, timezone: e.target.value });
         },
 
         consentChecked(e)
@@ -83,7 +83,7 @@
 <template>
     <form class="mx-auto max-w-[700px]" @submit="submit">
         <ext-label label="Nome completo">
-            <input type="text" required class="w-full" maxlength="140" :value="state.fullName" @input="nameChanged"/>
+            <input type="text" required class="w-full" maxlength="140" :value="state.fullname" @input="nameChanged"/>
         </ext-label>
         <ext-label label="E-mail">
             <input type="email" required class="w-full" maxlength="140" :value="state.email" @input="emailChanged"/>
@@ -95,7 +95,7 @@
             <input type="password" required class="w-full" maxlength="140" :value="state.password2" @input="password2Changed"/>
         </ext-label>
         <ext-label label="Seu fuso horário">
-            <select @change="timeZoneChanged">
+            <select @change="timezoneChanged">
                 <option :for="dtz in EADPI.Time.TimeZones" :value="dtz" :selected="dtz === 'America/Sao_Paulo'">${dtz}</option>
             </select>
         </ext-label>

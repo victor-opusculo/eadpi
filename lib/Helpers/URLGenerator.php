@@ -62,6 +62,13 @@ final class URLGenerator
 		};
 	}
 
+	public static function getHttpProtocolName() : string
+	{
+		$isHttps = $_SERVER['HTTPS'] ?? $_SERVER['REQUEST_SCHEME'] ?? $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? null;
+		$isHttps = $isHttps && (strcasecmp('on', $isHttps) == 0 || strcasecmp('https', $isHttps) == 0);
+		return $isHttps ? 'https' : 'http';
+	}
+
 	private static function generateQueryString(array $queryData) : string
 	{
 		return http_build_query($queryData);
