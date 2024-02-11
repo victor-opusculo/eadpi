@@ -1,4 +1,5 @@
 vendor/
+PComp/vendor
 phinx.php
 /**/php_errors.log
 php_errors.log

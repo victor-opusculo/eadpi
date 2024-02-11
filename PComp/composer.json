@@ -1,0 +1,23 @@
+{
+    "name": "victor-opusculo/p-comp",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+		"files":
+        [
+            "src/Prelude.php"
+        ],
+        "psr-4": {
+            "VictorOpusculo\\PComp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Victor Opusculo"
+        }
+    ],
+    "require": 
+	{
+		"php": ">=8.1.0"
+	}
+}
