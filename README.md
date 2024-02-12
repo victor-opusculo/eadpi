@@ -9,10 +9,10 @@ A plataforma permite o cadastro de alunos mediante fornecimento de e-mail e senh
 Tipo: Sistema web  
 Versão atual: 1.0  
 Linguagens de programação usadas: PHP e Javascript  
-Bibliotecas PHP usadas: tFPDF (para geração de certificados em PDF), PHPMailer, Phinx
-Bibliotecas Javascript usadas: Lego.js (para gerar componentes client-side)
-Banco de dados usado: MySQL 8.0 / MariaDB 10.2
-Versão do PHP requerida: Mínimo 8.1 
+Bibliotecas PHP usadas: tFPDF (para geração de certificados em PDF), PHPMailer, Phinx  
+Bibliotecas Javascript usadas: Lego.js (para gerar componentes client-side)  
+Banco de dados usado: MySQL 8.0 / MariaDB 10.2  
+Versão do PHP requerida: Mínimo 8.1  
 
 # Instalação e funcionamento
 Todos os arquivos e diretórios do branch "master" devem ser copiados para um diretório nomeado "eadpi" dentro da pasta acessível via localhost de seu servidor HTTP (neste caso, usou-se o IIS do Windows 11). O PHP deve estar instalado e configurado com as seguintes extensões habilitadas: mbstring, mysqli, openssl. O banco de dados MySQL/MariaDB deve ser criado de acordo com as migrações Phinx disponíveis na pasta 'db'.
