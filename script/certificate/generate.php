@@ -5,6 +5,7 @@ require_once __DIR__ . '/../../lib/Helpers/LogEngine.php';
 
 use VictorOpusculo\Eadpi\Lib\Helpers\LogEngine;
 use VictorOpusculo\Eadpi\Lib\Helpers\URLGenerator;
+use VictorOpusculo\Eadpi\Lib\Helpers\UserTypes;
 use VictorOpusculo\Eadpi\Lib\Model\Courses\TestQuestion;
 use VictorOpusculo\Eadpi\Lib\Model\Database\Connection;
 use VictorOpusculo\Eadpi\Lib\Model\Students\CompletedTestQuestion;
@@ -148,10 +149,20 @@ class CertPDF extends tFPDF
 
 }
 
+session_name('eadpi_student_user');
+session_start();
+
+if (!isset($_SESSION) || $_SESSION['user_type'] !== UserTypes::student)
+    die("Aluno não logado!");
+
 $conn = Connection::get();
 $subscription = (new Subscription([ 'id' => $subsId ]))->getSingle($conn);
 $subscription->fetchCourse($conn);
 [ $questionsAnsweredCount, $scoredPoints ] = $subscription->getCompletedTestQuestionsCountAndScoredPoints($conn);
+
+
+if ($subscription->student_id->unwrapOr(0) != $_SESSION['user_id'])
+    die("Certificado não localizado!");
 
 $studentGetter = new Student([ 'id' => $subscription->student_id->unwrapOrElse(fn() => throw new Exception("Aluno não localizado!")) ]);
 $studentGetter->setCryptKey(Connection::getCryptoKey());
