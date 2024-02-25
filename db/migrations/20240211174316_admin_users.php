@@ -32,7 +32,7 @@ final class AdminUsers extends AbstractMigration
             'id' => 1,
             'full_name' => 'Escola do Parlamento de Itapevi',
             'email' => 'escoladoparlamento@itapevi.sp.leg.br',
-            'password_hash' => password_hash('Epi.158$%', PASSWORD_DEFAULT)
+            'password_hash' => password_hash('12345678', PASSWORD_DEFAULT)
         ];
 
         $table->insert($adminDr)->saveData();
