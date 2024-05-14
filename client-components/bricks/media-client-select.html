@@ -1,0 +1,83 @@
+<script>
+    const state =
+    {
+        set_id_field_callback: _ => void 0,
+        search_keywords: '',
+        page_num: 1,
+        total_items: 0,
+        num_results_on_page: 10,
+        data_rows: []
+    }
+
+    const methods = 
+    {
+        searchAction(query)
+        {
+            this.render({ ...this.state, page_num: 1, search_keywords: query });
+            this.fetchMedia();
+        },
+
+        selectMediaFromDataGrid(id)
+        {
+            if (typeof this.state.set_id_field_callback === "function")
+                this.state.set_id_field_callback(id);
+        },
+
+        changePageAction(toPage)
+        {
+            this.render({ ...this.state, page_num: toPage });
+            this.fetchMedia();
+        },
+
+        async fetchMedia()
+        {
+            const query =
+            {
+                q: this.state.search_keywords || '',
+                page_num: this.state.page_num || 1,
+                order_by: '',
+                num_results_on_page: this.state.num_results_on_page || 10
+            };
+
+            const res = await fetch(EADPI.Helpers.URLGenerator.generateApiUrl('/administrator/media', query), { method: 'GET' });
+            const json = await res.json();
+            
+            const { data: { dataRows, allCount } } = json;
+
+            this.render({ ...this.state, data_rows: dataRows.map(m => 
+                ({ 
+                    "ID": String(m.id),
+                    "Nome": m.name,
+                    "Extensão": m.file_extension,
+                    "Prévia": { type: 'image', src: EADPI.Helpers.URLGenerator.generateFileUrl(`uploads/media/${m.id}.${m.file_extension}`), width: 64 }
+                })), 
+                total_items: allCount 
+            });
+        }
+    }
+
+    function setup()
+    {
+        this.fetchMedia();
+    }
+</script>
+
+<template>
+    <div>
+        <basic-search-field 
+            :searchcallback="this.searchAction.bind(this)" 
+            :searchkeywords="state.search_keywords" 
+        ></basic-search-field>
+        <data-grid
+            selectlinkparamname="ID"
+            :returnidcallback="this.selectMediaFromDataGrid.bind(this)"
+            :datarows="state.data_rows"
+        ></data-grid>
+        <client-paginator
+            :totalitems="state.total_items"
+            :resultsonpage="state.num_results_on_page"
+            :pagenum="state.page_num"
+            :changepagecallback="this.changePageAction.bind(this)"
+        ></client-paginator>
+    </div>
+</template>

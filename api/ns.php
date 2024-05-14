@@ -32,6 +32,16 @@ return
         [
             '/course_subscriptions' => Administrator\Report\CourseSubscriptions::class
         ],
+        '/media' => fn() =>
+        [
+            '/' => Administrator\Media\Home::class,
+            '/[mediaId]' => Administrator\Media\MediaId::class
+        ],
+        '/partners' => fn() =>
+        [
+            '/' => Administrator\Partners\Home::class,
+            '/[partnerId]' => Administrator\Partners\PartnerId::class
+        ],
         '/[id]' => Administrator\AdminId::class
     ]
 ];

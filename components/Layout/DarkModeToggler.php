@@ -22,6 +22,10 @@ final class DarkModeToggler extends Component
 
     protected function markup(): Component|array|null
     {
-        return tag('label', class: 'flex flex-row items-center px-2', children: [ scTag('input', class: 'mr-2', id: 'darkModeToggler', type: 'checkbox'), text('Modo escuro') ]);
+        return tag('label', class: 'flex flex-row items-center px-2 cursor-pointer', title: 'Alternar modo claro/escuro', children: 
+        [ 
+            scTag('input', class: 'invisible peer', id: 'darkModeToggler', type: 'checkbox'), 
+            tag('span', class: "inline-block w-[2rem] h-[2rem] transition-[background-image] duration-500 bg-contain peer-checked:bg-[url('pics/moon.svg')] bg-[url('pics/sun.svg')]") 
+        ]);
     }
 }

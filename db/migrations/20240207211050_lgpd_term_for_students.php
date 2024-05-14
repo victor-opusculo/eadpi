@@ -45,8 +45,8 @@ final class LgpdTermForStudents extends AbstractMigration
 
         $table = $this->table('students');
         $table
-        ->removeColumn('lgpdTerm')
-        ->removeColumn('lgpdTermVersion')
+        ->removeColumn('lgpd_term')
+        ->removeColumn('lgpd_term_version')
         ->update();
 
     }

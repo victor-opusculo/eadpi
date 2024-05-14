@@ -1,0 +1,76 @@
+<script>
+    const state = 
+    {
+        id: 0,
+        waiting: false,
+        name: '',
+        description: '',
+        filename: null,
+        files: null
+    };
+
+    const methods = 
+    {
+        changeField(e)
+        {
+            if (e.target.getAttribute('data-fieldname') === 'filename')
+            {
+                this.render({ ...this.state, files: e.target.files });
+            }
+
+            this.render({ ...this.state, [e.target.getAttribute('data-fieldname')]: e.target.value });
+        },
+
+        submit(e)
+        {
+            e.preventDefault();
+
+            const headers = new Headers();
+            const formData = new FormData();
+
+            formData.append('media:name', this.state.name);
+            formData.append('media:description', this.state.description);
+            formData.append('mediaFile', this.state.files && this.state.files[0] ? this.state.files[0] : null);
+
+            this.render({ ...this.state, waiting: true });
+
+            const route = this.state.id ? 
+                EADPI.Helpers.URLGenerator.generateApiUrl(`/administrator/media/${this.state.id}`)
+                :
+                EADPI.Helpers.URLGenerator.generateApiUrl('/administrator/media');
+
+            fetch(route, { headers, body: formData, method: 'POST' })
+            .then(res => res.json())
+            .then(json => 
+            {
+                EADPI.Alerts.pushFromJsonResult(json)
+               
+                if (json.success && json.data?.newId)
+                    window.location.href = EADPI.Helpers.URLGenerator.generatePageUrl('/admin/panel/media/' + json.data.newId);
+                else
+                    this.render({ ...this.state, waiting: false });
+            })
+            .catch(reason => EADPI.Alerts.push(EADPI.Alerts.types.error, String(reason)));
+        }
+    };
+</script>
+
+<template>
+    <form @submit="submit">
+        <ext-label label="Nome">
+            <input type="text" class="w-full" maxlength="140" required data-fieldname="name" value="${state.name}" @input="changeField"/>
+        </ext-label>
+        <ext-label label="Descrição" linebreak="1">
+            <textarea class="w-full" row="6" data-fieldname="description" @input="changeField">${state.description}</textarea>
+        </ext-label>
+        <ext-label label="Arquivo">
+            <input type="file" class="file:btn" data-fieldname="filename" :required="state.id ? false : true" @change="changeField"/>
+        </ext-label>
+        <div class="text-center mt-2">
+            <button type="submit" class="btn" :disabled="state.waiting">
+                <loading-spinner :if="state.waiting" additionalclasses="invert w-[1em] h-[1em]"></loading-spinner>
+                Salvar
+            </button>
+        </div>
+    </form>
+</template>

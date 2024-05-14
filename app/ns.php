@@ -59,7 +59,28 @@ return
         [
             '/' => \VictorOpusculo\Eadpi\App\Admin\Panel\PanelHome::class,
             '/edit_profile' => \VictorOpusculo\Eadpi\App\Admin\Panel\EditProfile::class,
-            '__layout' => \VictorOpusculo\Eadpi\App\Admin\Panel\PanelLayout::class
+            '__layout' => \VictorOpusculo\Eadpi\App\Admin\Panel\PanelLayout::class,
+            '/media' => fn() =>
+            [
+                '/' => \VictorOpusculo\Eadpi\App\Admin\Panel\Media\Home::class,
+                '/create' => \VictorOpusculo\Eadpi\App\Admin\Panel\Media\Create::class,
+                '/[mediaId]' => fn() =>
+                [
+                    '/' => \VictorOpusculo\Eadpi\App\Admin\Panel\Media\MediaId\View::class,
+                    '/edit' => \VictorOpusculo\Eadpi\App\Admin\Panel\Media\MediaId\Edit::class,
+                    '/delete' => \VictorOpusculo\Eadpi\App\Admin\Panel\Media\MediaId\Delete::class
+                ]
+            ],
+            '/partners' => fn() =>
+            [
+                '/' => \VictorOpusculo\Eadpi\App\Admin\Panel\Partners\Home::class,
+                '/create' => \VictorOpusculo\Eadpi\App\Admin\Panel\Partners\Create::class,
+                '/[partnerId]' => fn() =>
+                [
+                    '/' => \VictorOpusculo\Eadpi\App\Admin\Panel\Partners\PartnerId\View::class,
+                    '/edit' => \VictorOpusculo\Eadpi\App\Admin\Panel\Partners\PartnerId\Edit::class
+                ]
+            ]
         ]
     ],
     '__layout' => BaseLayout::class,

@@ -4,3 +4,7 @@ phinx.php
 /**/php_errors.log
 php_errors.log
 log/*.log
+
+uploads/media/*
+
+!uploads/media/.gitkeep

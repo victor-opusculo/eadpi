@@ -28,7 +28,14 @@ EADPI.Alerts ??=
 
         if (jsonDecoded.success)
             this.push(this.types.success, jsonDecoded.success);
+    },
+
+    pushError(message)
+    {
+        return reason => (this.pushFromJsonResult(this.types.error, message), console.error(reason));
     }
 };
 
 Object.freeze(EADPI.Alerts.types);
+EADPI.Alerts.pushError = EADPI.Alerts.pushError.bind(EADPI.Alerts);
+EADPI.Alerts.pushFromJsonResult = EADPI.Alerts.pushFromJsonResult.bind(EADPI.Alerts);

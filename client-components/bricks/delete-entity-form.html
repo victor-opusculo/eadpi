@@ -1,0 +1,40 @@
+
+<script>
+    const state =
+    {
+        deletescripturl: '',
+        gobacktourl: '',
+        slotId: ''
+    };
+
+    const methods = 
+    {
+        submit(e)
+        {
+            e.preventDefault();
+
+            fetch(this.state.deletescripturl, { method: 'DELETE' })
+            .then(res => res.json())
+            .then(json =>
+            {
+                EADPI.Alerts.pushFromJsonResult(json);
+
+                if (json.success)
+                    window.location.href = EADPI.Helpers.URLGenerator.generatePageUrl(this.state.gobacktourl);
+            })
+            .catch(reason => EADPI.Alerts.push(EADPI.Alerts.types.error, String(reason)));
+        },
+
+        goBack() { history.back(); }
+    };
+</script>
+
+<template>
+    <form @submit="submit">
+        <slot id="${state.slotId}"></slot>
+        <div class="text-center my-4">
+            <button type="submit" class="btn mr-4">Sim, excluir</button>
+            <button type="button" class="btn" @click="goBack">Não excluir</button>
+        </div>
+    </form>
+</template>

@@ -1,0 +1,82 @@
+<script>
+    const state = 
+    {
+        id: null,
+        name: '',
+        description: '',
+        begin: '',
+        end: '',
+        certificate_bg_media_id: null,
+
+        enableCertBgMediaSearch: false
+    };
+
+    const methods = 
+    {
+        changeField(e)
+        {
+            this.render({ ...this.state, [ e.target.name ]: e.target.value });
+        },
+
+        toggleSearch()
+        {
+            this.render({ ...this.state, enableCertBgMediaSearch: !this.state.enableCertBgMediaSearch });
+        },
+
+        setMediaId(id)
+        {
+            this.render({ ...this.state, certificate_bg_media_id: id });
+        },
+
+        submit(e)
+        {
+            e.preventDefault();
+
+            const data = {};
+            for (const prop in this.state)
+                if (prop !== 'enableCertBgMediaSearch')
+                    data['partners:' + prop] = this.state[prop];
+
+            const route = this.state.id
+                ? EADPI.Helpers.URLGenerator.generateApiUrl(`/administrator/partners/${this.state.id}`)
+                : EADPI.Helpers.URLGenerator.generateApiUrl(`/administrator/partners`);
+
+            const headers = new Headers({ 'Content-Type': 'application/json' });
+            const body = JSON.stringify({ data });
+            fetch(route, { method: this.state.id ? 'PUT' : 'POST', headers, body })
+            .then(res => res.json())
+            .then(json =>
+            {
+                EADPI.Alerts.pushFromJsonResult(json);
+                if (json.success && json.data?.newId)
+                    window.location.href = EADPI.Helpers.URLGenerator.generatePageUrl(`/admin/panel/partners/${json.data.newId}`);
+            })
+            .catch(EADPI.Alerts.pushError("Erro ao salvar parceiro!"));
+        }
+    };
+</script>
+
+<template>
+    <form @submit="submit">
+        <ext-label label="Nome da parceria">
+            <input type="text" maxlength="280" class="w-full" name="name" :value="state.name" required @change="changeField" />
+        </ext-label>
+        <ext-label label="Descrição" linebreak="1">
+            <textarea name="description" @change="changeField" name="description" :value="state.description" class="w-full" rows="6"></textarea>
+        </ext-label>
+        <ext-label label="Início">
+            <input type="date" :value="state.begin" @change="changeField" name="begin" required />
+        </ext-label>
+        <ext-label label="Fim">
+            <input type="date" :value="state.end" @change="changeField" name="end" /> (Deixe em branco para parceria em vigor)
+        </ext-label>
+        <ext-label label="Fundo do certificado para inscritos pelo link de parceria">
+            <input type="number" step="1" min="1" name="certificate_bg_media_id" :value="state.certificate_bg_media_id" required @change="changeField" />
+            <button type="button" class="ml-2 btn" @click="toggleSearch">Procurar</button>
+        </ext-label>
+        <media-client-select :if="state.enableCertBgMediaSearch" :set_id_field_callback="this.setMediaId.bind(this)"></media-client-select>
+        <div class="text-center mt-2">
+            <button type="submit" class="btn">Salvar</button>
+        </div>
+    </form>
+</template>

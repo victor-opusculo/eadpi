@@ -5,6 +5,7 @@ namespace VictorOpusculo\Eadpi\Lib\Model\Students;
 use Exception;
 use mysqli;
 use VictorOpusculo\Eadpi\Lib\Model\Courses\Course;
+use VictorOpusculo\Eadpi\Lib\Model\Partners\Partner;
 use VOpus\PhpOrm\DataEntity;
 use VOpus\PhpOrm\DataProperty;
 use VOpus\PhpOrm\Exceptions\DatabaseEntityNotFound;
@@ -22,6 +23,7 @@ class Student extends DataEntity
             'full_name' => new DataProperty('fullname', fn() => null, DataProperty::MYSQL_STRING, true),
             'password_hash' => new DataProperty(null, fn() => null, DataProperty::MYSQL_STRING, false),
             'timezone' => new DataProperty('timezone', fn() => 'America/Sao_Paulo', DataProperty::MYSQL_STRING, false),
+            'partner_id' => new DataProperty('partner_id', fn() => null, DataProperty::MYSQL_INT, false),
             'lgpd_term_version' => new DataProperty('lgpdtermversion', fn() => null, DataProperty::MYSQL_INT),
             'lgpd_term' => new DataProperty('lgpdTermText', fn() => null, DataProperty::MYSQL_STRING)
         ];
@@ -37,6 +39,7 @@ class Student extends DataEntity
     protected array $primaryKeys = ['id']; 
 
     public array $subscriptions = [];
+    public ?Partner $partner = null;
 
     public function getByEmail(mysqli $conn) : self
     {
@@ -101,6 +104,14 @@ class Student extends DataEntity
             $sub->fetchCourse($conn);
 
         $this->subscriptions = $subscriptions;
+        return $this;
+    }
+
+    public function fetchPartner(mysqli $conn) : self
+    {
+        if (!$this->properties->partner_id->getValue()->unwrapOr(false)) return $this;
+
+        $this->partner = (new Partner([ 'id' => $this->properties->partner_id->getValue()->unwrap() ]))->getSingle($conn);
         return $this;
     }
 }

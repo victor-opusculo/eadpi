@@ -1,0 +1,46 @@
+<script>
+    const state =
+    {
+        datarows: [],
+        columnstohide: [],
+        returnidcallback: null,
+        selectlinkparamname: 'id'
+    };
+
+    const methods = 
+    {
+        selectClick(e)
+        {
+            e.preventDefault();
+            const param = e.target.getAttribute('data-id');
+            this.state.returnidcallback(param);
+        },
+        
+    }; 
+</script>
+
+<template>
+    <p :if="!(state.datarows?.length)">Não há dados disponíveis.</p>
+
+    <table :if="state.datarows?.length > 0">
+        <thead>
+            <tr>
+                <th :for="header in Object.keys(state.datarows[0])">
+                    ${header}
+                </th>
+                <th :if="state.returnidcallback">Selecionar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr :for="row in state.datarows">
+                <td :for="header in Object.keys(row)" data-th="${header}">
+                    <span :if="typeof row[header] === 'string'">${row[header]}</span>
+                    <img :if="typeof row[header] === 'object' && row[header].type === 'image'" src="${row[header].src}" width="${row[header].width}" />
+                </td>
+                <td :if="state.returnidcallback">
+                    <a class="link text-lg" @click="selectClick" data-th="Selecionar" data-id="${row[state.selectlinkparamname]}" href="#">Selecionar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</template>

@@ -1,0 +1,43 @@
+
+<script>
+    const state =
+    {
+        searchkeywords: '',
+        searchcallback: null
+    };
+
+    const methods =
+    {
+        changeInput(e)
+        {
+            this.render({ ...this.state, searchkeywords: e.target.value });
+        },
+
+        keydown(e)
+        {
+            if (e.keyCode === 13)
+            {
+                e.preventDefault();
+                this.buttonClicked();
+            }
+        },
+
+        buttonClicked(e)
+        {
+            if (typeof this.state.searchcallback === "function")
+                this.state.searchcallback(this.state.searchkeywords);
+        }
+    };
+</script>
+
+<template>
+    <span class="flex flex-row items-center">
+        <label>
+            Pesquisar:
+            <input type="search" :value="state.searchkeywords" @input="changeInput" @keydown="keydown" />
+        </label>
+        <button type="button" class="btn ml-2 min-w-[32px]" @click="buttonClicked">
+            <img src="${EADPI.Helpers.URLGenerator.generateFileUrl('assets/pics/search.png')}" alt="Pesquisar" width="28" />
+        </button>
+    </span>
+</template>
