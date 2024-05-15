@@ -6,6 +6,7 @@ use VictorOpusculo\Eadpi\Api\Administrator\Partners\PartnerId;
 use VictorOpusculo\Eadpi\Components\Label;
 use VictorOpusculo\Eadpi\Components\Layout\DefaultPageFrame;
 use VictorOpusculo\Eadpi\Components\Panels\ConvenienceLinks;
+use VictorOpusculo\Eadpi\Lib\Helpers\System;
 use VictorOpusculo\Eadpi\Lib\Helpers\URLGenerator;
 use VictorOpusculo\Eadpi\Lib\Model\Database\Connection;
 use VictorOpusculo\Eadpi\Lib\Model\Partners\Partner;
@@ -55,11 +56,16 @@ final class View extends Component
                 )
             ),
             component(Label::class, labelBold: true, label: "Início", children: text(date_create($this->partner->begin->unwrapOr('now'))->format('d/m/Y'))),
-            component(Label::class, labelBold: true, label: "Início", children: text(
+            component(Label::class, labelBold: true, label: "Fim", children: text(
                 $this->partner->end->unwrapOr(false)
                     ? date_create($this->partner->begin->unwrap())->format('d/m/Y')
                     : 'Parceria em vigor'
                 ),
+            ),
+            component(Label::class, labelBold: true, label: "Link para registro de aluno vinculado ao parceiro", children:
+                tag('a', class: 'link', href: URLGenerator::generatePageUrl("/students/register_fp/{$this->partner->id->unwrapOr(0)}"), children:
+                    text(URLGenerator::getHttpProtocolName() . '://' . $_SERVER['HTTP_HOST'] . URLGenerator::generatePageUrl("/students/register_fp/{$this->partner->id->unwrapOr(0)}"))
+                )
             ),
             component(Label::class, labelBold: true, label: "Fundo de certificado", lineBreak: true, children:
                 isset($this->partner->certificateBg)

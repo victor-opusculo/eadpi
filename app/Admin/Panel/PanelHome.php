@@ -35,7 +35,9 @@ final class PanelHome extends Component
             [
                 tag('a', class: 'btn mr-2', href: URLGenerator::generateApiUrl('/administrator/report/course_subscriptions'), children: text('Baixar relatório de inscrições em cursos')),
                 tag('a', class: 'btn mr-2', href: URLGenerator::generatePageUrl('/admin/panel/media'), children: text('Mídias')),
-                tag('a', class: 'btn mr-2', href: URLGenerator::generatePageUrl('/admin/panel/partners'), children: text('Parceiros'))
+                tag('a', class: 'btn mr-2', href: URLGenerator::generatePageUrl('/admin/panel/partners'), children: text('Parceiros')),
+                tag('a', class: 'btn mr-2', href: URLGenerator::generatePageUrl('/admin/panel/certificates/set_default_background'), children: text('Alterar fundo padrão do certificado'))
+                
             ])
         ];
     }

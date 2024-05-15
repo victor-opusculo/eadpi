@@ -25,7 +25,7 @@ final class Login extends RouteHandler
         {
             $studentGetter = new Student([ 'email' => $_POST['data']['email'] ?? 'n@d' ]);
             $studentGetter->setCryptKey(Connection::getCryptoKey());
-            $student = $studentGetter->getByEmail($conn);
+            $student = $studentGetter->getByEmail($conn)->fetchPartner($conn);
 
             session_name("eadpi_student_user");
             session_start();
@@ -35,6 +35,10 @@ final class Login extends RouteHandler
                 $_SESSION['user_id'] = $student->id->unwrap();
                 $_SESSION['user_email'] = $student->email->unwrap();
                 $_SESSION['user_name'] = $student->full_name->unwrapOr("Nome não definido");
+
+                if (isset($student->partner))
+                    $_SESSION['user_partner_name'] = $student->partner->name->unwrapOr('');
+                
                 LogEngine::writeLog("Log-in de aluno realizado: ID {$student->id->unwrapOr(0)}");
                 $this->json([ 'success' => 'Bem-vindo!' ]);
             }

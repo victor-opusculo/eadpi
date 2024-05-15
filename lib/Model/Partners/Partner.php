@@ -2,6 +2,7 @@
 
 namespace VictorOpusculo\Eadpi\Lib\Model\Partners;
 
+use DateTime;
 use Exception;
 use mysqli;
 use VictorOpusculo\Eadpi\Lib\Helpers\System;
@@ -96,6 +97,18 @@ final class Partner extends DataEntity
 
         $count = (int)$selector->run($conn, SqlSelector::RETURN_FIRST_COLUMN_VALUE);
         return $count > 0;
+    }
+
+    public function passedEndDate() : bool
+    {
+        if ($this->properties->end->getValue()->unwrapOr(false))
+        {
+            $endDate = new DateTime($this->properties->end->getValue()->unwrap());
+            $today = new DateTime('now');
+
+            return $today > $endDate;
+        }
+        return false;
     }
 
     public function fetchCertificateBgMedia(mysqli $conn) : self

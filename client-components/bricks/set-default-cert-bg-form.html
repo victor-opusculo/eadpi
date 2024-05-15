@@ -1,0 +1,53 @@
+<script>
+    const state =
+    {
+        current_id: null,
+        enableMediaSelect: false
+    };
+
+    const methods = 
+    {
+        changeInput(e)
+        {
+            this.render({ ...this.state, current_id: e.target.value });
+        },
+
+        toggleMediaSelect()
+        {
+            this.render({ ...this.state, enableMediaSelect: !this.state.enableMediaSelect });
+        },
+
+        setMediaId(id)
+        {
+            this.changeInput({ target: { value: id } });
+        },
+
+        submit(e)
+        {
+            e.preventDefault();
+
+            const headers = new Headers({ 'Content-Type': 'application/json' });
+            const body = JSON.stringify({ data: { newId: this.state.current_id } });
+            fetch(EADPI.Helpers.URLGenerator.generateApiUrl("/administrator/certificates/set_bg_image"), { headers, body, method: 'PUT' })
+            .then(res => res.json())
+            .then(json =>
+            {
+                EADPI.Alerts.pushFromJsonResult(json);
+            })
+            .catch(EADPI.Alerts.pushError("Erro ao salvar configuração!"));
+        }
+    };
+</script>
+
+<template>
+    <form @submit="submit">
+        <ext-label label="Imagem de fundo (Mídia ID)">
+            <input type="number" min="1" step="1" :value="state.current_id" @change="changeInput" />
+            <button type="button" class="btn ml-2" @click="toggleMediaSelect">Procurar</button>
+        </ext-label>
+        <media-client-select :if="state.enableMediaSelect" :set_id_field_callback="this.setMediaId.bind(this)"></media-client-select>
+        <div class="mt-2 text-center">
+            <button type="submit" class="btn">Salvar</button>
+        </div>
+    </form>
+</template>

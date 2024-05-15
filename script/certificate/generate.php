@@ -4,12 +4,15 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../lib/Helpers/LogEngine.php';
 
 use VictorOpusculo\Eadpi\Lib\Helpers\LogEngine;
+use VictorOpusculo\Eadpi\Lib\Helpers\System;
 use VictorOpusculo\Eadpi\Lib\Helpers\URLGenerator;
 use VictorOpusculo\Eadpi\Lib\Helpers\UserTypes;
 use VictorOpusculo\Eadpi\Lib\Model\Courses\TestQuestion;
 use VictorOpusculo\Eadpi\Lib\Model\Database\Connection;
 use VictorOpusculo\Eadpi\Lib\Model\Students\CompletedTestQuestion;
 use VictorOpusculo\Eadpi\Lib\Model\Courses\GeneratedCertificate;
+use VictorOpusculo\Eadpi\Lib\Model\Media\Media;
+use VictorOpusculo\Eadpi\Lib\Model\Settings\DefaultCertificateBgMediaId;
 use VictorOpusculo\Eadpi\Lib\Model\Students\Student;
 use VictorOpusculo\Eadpi\Lib\Model\Students\Subscription;
 
@@ -21,7 +24,6 @@ function getHttpProtocolName()
 }
 
 define('AUTH_ADDRESS',  getHttpProtocolName() . "://" . $_SERVER["HTTP_HOST"] . URLGenerator::generatePageUrl("/certificate/auth"));
-define('CERT_BG', __DIR__ . '/../../assets/certificates/certbg2023.jpg');
 define('_SYSTEM_TTFONTS', __DIR__ . '/../../assets/fonts/');
 
 $subsId = isset($_GET['subscription_id']) && is_numeric($_GET['subscription_id']) ? (int)$_GET['subscription_id'] : null;
@@ -31,6 +33,7 @@ if (!$subsId || $subsId < 1)
 
 class CertPDF extends tFPDF
 {
+    private string $certBg;
     private DateTime $subscriptionDateTime;
     private DateTime $endDateTime;
     private string $bodyText;
@@ -43,7 +46,8 @@ class CertPDF extends tFPDF
     private int $hours;
     private array $authInfos;
 
-    public function setData(DateTime $subscriptionDateTime,
+    public function setData(string $certBg,
+                            DateTime $subscriptionDateTime,
                             DateTime $endDateTime,
                             string $bodyText,
                             string $studentName,
@@ -55,6 +59,7 @@ class CertPDF extends tFPDF
                             int $hours,
                             array $authInfos) : void
     {
+        $this->certBg = $certBg;
         $this->subscriptionDateTime = $subscriptionDateTime->setTimezone(new DateTimeZone("America/Sao_Paulo"));
         $this->endDateTime = $endDateTime->setTimezone(new DateTimeZone("America/Sao_Paulo"));
         $this->bodyText = $bodyText;
@@ -76,7 +81,7 @@ class CertPDF extends tFPDF
     {
         $this->AddPage();
 
-        $this->Image(CERT_BG, 0, 0, 297, 210, "JPG"); // Face page
+        $this->Image($this->certBg, 0, 0, 297, 210, "JPG"); // Face page
         $this->Image("../../assets/certificates/cmilogo.png", 5, 186, 40, null, "PNG"); // CMI logo
 
         $this->setY(75);
@@ -166,7 +171,10 @@ if ($subscription->student_id->unwrapOr(0) != $_SESSION['user_id'])
 
 $studentGetter = new Student([ 'id' => $subscription->student_id->unwrapOrElse(fn() => throw new Exception("Aluno não localizado!")) ]);
 $studentGetter->setCryptKey(Connection::getCryptoKey());
-$student = $studentGetter->getSingle($conn);
+$student = $studentGetter
+->getSingle($conn)
+->fetchPartner($conn);
+
 $questionsTotalCount = $subscription->course->getQuestionsTotalCount($conn);
 $maxScorePossible = (new TestQuestion)->getQuestionsTotalPoints($conn, $subscription->course->id->unwrap());
 $endDateTime = (new CompletedTestQuestion([ 'subscription_id' => $subscription->id->unwrap() ]))->getLastCompletedTestDatetimeFromSubscription($conn);
@@ -192,13 +200,32 @@ else
     $issueDateTime = new DateTime($cert->datetime->unwrap(), new DateTimeZone("UTC"));
 }
 
+$certBg = null;
+try
+{
+    if (isset($student->partner) && $student->partner->certificate_bg_media_id->unwrapOr(false))
+    {
+        $student->partner->fetchCertificateBgMedia($conn);
+        $certBg = System::systemBaseDir() . '/' . $student->partner->certificateBg->fileNameFromBaseDir();
+    }
+}
+catch (Exception) {}
+
+if (!$certBg)
+{
+    $certBgMediaId = (new DefaultCertificateBgMediaId)->getSingle($conn)->value->unwrapOr(null);
+    $media = (new Media([ 'id' => $certBgMediaId ]))->getSingle($conn);
+    $certBg = System::systemBaseDir() . '/' . $media->fileNameFromBaseDir();
+}
+
 $conn->close();
 
 if ($scoredPoints < $subscription->course->min_points_required_on_tests->unwrap())
     die("Você não foi aprovado neste curso!");
 
 $pdf = new CertPDF('L', 'mm', 'A4');
-$pdf->setData(  subscriptionDateTime: new DateTime($subscription->datetime->unwrap(), new DateTimeZone("UTC")),
+$pdf->setData(  $certBg,
+                subscriptionDateTime: new DateTime($subscription->datetime->unwrap(), new DateTimeZone("UTC")),
                 endDateTime: $endDateTime,
                 bodyText: $subscription->course->certificate_text->unwrap(),
                 studentName: $student->full_name->unwrap(),

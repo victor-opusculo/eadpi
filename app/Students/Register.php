@@ -4,6 +4,7 @@ namespace VictorOpusculo\Eadpi\App\Students;
 use DateTimeZone;
 use Exception;
 use VictorOpusculo\Eadpi\Lib\Model\Database\Connection;
+use VictorOpusculo\Eadpi\Lib\Model\Partners\Partner;
 use VictorOpusculo\Eadpi\Lib\Model\Settings\LgpdTermText;
 use VictorOpusculo\Eadpi\Lib\Model\Settings\LgpdTermVersion;
 use VictorOpusculo\PComp\Component;
@@ -31,6 +32,9 @@ class Register extends Component
         {  
             $this->lgpdTermVersion = (new LgpdTermVersion)->getSingle($conn)->value->unwrapOrElse(fn() => throw new Exception('Não foi possível carregar a versão do termo LGPD.'));            
             $this->lgpdTermText = (new LgpdTermText)->getSingle($conn)->value->unwrapOrElse(fn() => throw new Exception('Não foi possível carregar o termo LGPD.'));
+
+            if (!empty($_GET['part_id']))
+                $this->partner = (new Partner([ 'id' => $_GET['part_id'] ]))->getSingle($conn);
         }
         catch (\Exception $e)
         {
@@ -40,12 +44,16 @@ class Register extends Component
 
     protected ?int $lgpdTermVersion = null;
     protected ?string $lgpdTermText = '';
+    private ?Partner $partner = null;
 
     protected function markup(): Component|array|null
     {
         return 
         [
             tag('h1', children: text('Registrar-se')),
+            isset($this->partner)
+                ? tag('p', class: 'text-center my-2', children: text("Registrando em parceria com " . $this->partner->name->unwrapOr('')))
+                : null,
             tag('student-register-form', 
                 lgpdtermversion: $this->lgpdTermVersion, 
                 children: tag('textarea', name: 'lgpdTerm', class: 'w-full min-h-[calc(100vh-180px)]', readonly: true, children: text($this->lgpdTermText))

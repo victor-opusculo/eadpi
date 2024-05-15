@@ -19,6 +19,10 @@ return
     [
         '/login' => Students\Login::class,
         '/register' => Students\Register::class,
+        '/register_fp' => fn() =>
+        [
+            '/[partnerId]' => Students\RegisterByPartner\PartnerId::class
+        ],
         '/panel' => fn() =>
         [
             '/' => \VictorOpusculo\Eadpi\App\Students\Panel\PanelHome::class,
@@ -78,8 +82,13 @@ return
                 '/[partnerId]' => fn() =>
                 [
                     '/' => \VictorOpusculo\Eadpi\App\Admin\Panel\Partners\PartnerId\View::class,
-                    '/edit' => \VictorOpusculo\Eadpi\App\Admin\Panel\Partners\PartnerId\Edit::class
+                    '/edit' => \VictorOpusculo\Eadpi\App\Admin\Panel\Partners\PartnerId\Edit::class,
+                    '/delete' => \VictorOpusculo\Eadpi\App\Admin\Panel\Partners\PartnerId\Delete::class
                 ]
+            ],
+            '/certificates' => fn() =>
+            [
+                '/set_default_background' => \VictorOpusculo\Eadpi\App\Admin\Panel\Certificates\SetDefaultBackground::class
             ]
         ]
     ],

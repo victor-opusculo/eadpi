@@ -40,6 +40,9 @@ customElements.define('media-client-select', MediaClientSelect)
 import NewMediaForm from './new-media-form.js'
 customElements.define('new-media-form', NewMediaForm)
 
+import SetDefaultCertBgForm from './set-default-cert-bg-form.js'
+customElements.define('set-default-cert-bg-form', SetDefaultCertBgForm)
+
 import StudentChangeDataForm from './student-change-data-form.js'
 customElements.define('student-change-data-form', StudentChangeDataForm)
 

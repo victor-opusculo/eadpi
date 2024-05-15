@@ -5,6 +5,7 @@ namespace VictorOpusculo\Eadpi\Api\Student;
 use Exception;
 use VictorOpusculo\Eadpi\Lib\Helpers\LogEngine;
 use VictorOpusculo\Eadpi\Lib\Model\Database\Connection;
+use VictorOpusculo\Eadpi\Lib\Model\Partners\Partner;
 use VictorOpusculo\Eadpi\Lib\Model\Students\Student;
 use VictorOpusculo\PComp\RouteHandler;
 
@@ -30,6 +31,17 @@ final class Register extends RouteHandler
                 throw new Exception("O e-mail informado já está cadastrado!");
 
             $student->hashPassword($_POST['data']['students:password']);
+
+            if (isset($_POST['data']['partner_id']))
+            {
+                $pid = (int)$_POST['data']['partner_id'];
+                $partner = (new Partner([ 'id' => $pid ]))->getSingle($conn);
+
+                if (!$partner->passedEndDate())
+                    $student->partner_id = $pid;
+                else
+                    throw new Exception("Esta parceria já foi finalizada. Tente se registrar pelo menu do meu aprendizado acima.");
+            }
 
            $result = $student->save($conn);
             

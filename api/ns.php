@@ -42,6 +42,10 @@ return
             '/' => Administrator\Partners\Home::class,
             '/[partnerId]' => Administrator\Partners\PartnerId::class
         ],
+        '/certificates' => fn() =>
+        [
+            '/set_bg_image' => Administrator\Certificates\SetBgImage::class
+        ],
         '/[id]' => Administrator\AdminId::class
     ]
 ];

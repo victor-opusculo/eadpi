@@ -92,6 +92,10 @@
             for (const prop in this.state)
                 data['students:' + prop] = this.state[prop];
 
+            const thisUrl = new URL(window.location.href);
+            if (thisUrl.searchParams.has('part_id'))
+                data.partner_id = thisUrl.searchParams.get("part_id");
+
             const headers = new Headers({ 'Content-Type': 'application/json' });
             const body = JSON.stringify({ data });
             fetch(EADPI.Helpers.URLGenerator.generateApiUrl('/student/register'), { method: 'POST', headers, body })
