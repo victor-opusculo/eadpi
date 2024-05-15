@@ -24,6 +24,8 @@ class CourseSubscriptions
         ->addSelectColumn('student_subscriptions.id AS subscriptionId')  
         ->addSelectColumn('student_subscriptions.course_id As courseId')  
         ->addSelectColumn('student_subscriptions.datetime as subscriptionDatetime')  
+        ->addSelectColumn('partners.id as partnerId')  
+        ->addSelectColumn('partners.name as partnerName')  
         ->addSelectColumn('students.id as studentId')  
         ->addSelectColumn("aes_decrypt(students.full_name, '$cryptoKey') as studentFullName")  
         ->addSelectColumn("aes_decrypt(students.email, '$cryptoKey') as studentEmail")  
@@ -44,7 +46,8 @@ class CourseSubscriptions
         ->addSelectColumn("courses.name AS courseName")
         ->setTable('student_subscriptions')
         ->addJoin("LEFT JOIN students ON students.id = student_subscriptions.student_id")
-        ->addJoin("LEFT JOIN courses ON courses.id = student_subscriptions.course_id");
+        ->addJoin("LEFT JOIN courses ON courses.id = student_subscriptions.course_id")
+        ->addJoin("LEFT JOIN partners ON partners.id = students.partner_id");
 
         $this->data = $selector->run($conn, SqlSelector::RETURN_ALL_ASSOC);
     }
@@ -71,7 +74,8 @@ class CourseSubscriptions
             'Questões respondidas' => fn($dr) => $dr['answeredQuestions'] ?? '',
             'Total de questões' => fn($dr) => $dr['totalQuestions'] ?? '',
             'Pontuação' => fn($dr) => $dr['scoredPoints'] ?? '',
-            'Pontuação máxima' => fn($dr) => $dr['maxScorePossible'] ?? ''
+            'Pontuação máxima' => fn($dr) => $dr['maxScorePossible'] ?? '',
+            'Parceiro' => fn($dr) => ($dr['partnerName'] ?? '')
          ]);
 
         $output = fopen("php://output", "w");

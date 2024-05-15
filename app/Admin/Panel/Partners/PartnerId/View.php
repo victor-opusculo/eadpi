@@ -52,13 +52,13 @@ final class View extends Component
             component(Label::class, labelBold: true, label: "Nome", children: text($this->partner->name->unwrapOr(''))),
             component(Label::class, labelBold: true, lineBreak: true, label: "Descrição", children: 
                 tag('div', class: 'whitespace-pre-line', children:
-                    text($this->partner->name->unwrapOr(''))
+                    text($this->partner->description->unwrapOr(''))
                 )
             ),
             component(Label::class, labelBold: true, label: "Início", children: text(date_create($this->partner->begin->unwrapOr('now'))->format('d/m/Y'))),
             component(Label::class, labelBold: true, label: "Fim", children: text(
                 $this->partner->end->unwrapOr(false)
-                    ? date_create($this->partner->begin->unwrap())->format('d/m/Y')
+                    ? date_create($this->partner->end->unwrap())->format('d/m/Y')
                     : 'Parceria em vigor'
                 ),
             ),
