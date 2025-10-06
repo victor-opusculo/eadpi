@@ -34,7 +34,7 @@ final class BaseLayout extends Component
             ]),
             tag('div', id: 'logos', class: 'p-4 bottom-[100px] left-0 right-0 overflow-auto text-center', children:
             [
-                tag('span', class: "bg-[url('pics/epi.png')] dark:bg-[url('pics/epi_white.png')] bg-contain bg-bottom bg-no-repeat h-[130px] w-[250px] inline-block"),
+                tag('span', style: "margin-right: 10px" , class: "bg-[url('pics/epi.png')] dark:bg-[url('pics/epi_white.png')] bg-contain bg-bottom bg-no-repeat h-[130px] w-[250px] inline-block"),
                 tag('span', class: "bg-[url('pics/cmi.png')] dark:bg-[url('pics/cmi_white.png')] bg-contain bg-bottom bg-no-repeat h-[80px] w-[230px] inline-block"),
             ]),
             tag('footer', class: "bg-[url('pics/rodape-transp.png')] bg-repeat-x block left-0 right-0 h-[100px]")
