@@ -5,6 +5,8 @@ A Câmara Municipal de Itapevi é a sede do poder legislativo municipal da cidad
 
 A plataforma permite o cadastro de alunos mediante fornecimento de e-mail e senha. Após logar-se, o aluno pode se inscrever no curso disponível e acompanhá-lo por meio de vídeo-aulas. Cada curso é dividido em módulos, que são divididos em aulas, que são divididas em blocos. Cada aula pode ter um questionário de múltipla escolha vinculado. Por meio desses, a plataforma mede o desempenho do aluno e permite ao próprio gerar seu certificado ao terminar todos os questionários.
 
+Este projeto foi uma solução provisória até uma plataforma mais completa ser desenvolvida. Não será mais atualizado.
+
 # Informações do EADPI
 Tipo: Sistema web  
 Versão atual: 1.0  
@@ -43,4 +45,5 @@ O sistema em produção tem o acesso direto ao arquivo de configuração restrin
 
 # Informações de contato
 Desenvolvedor solo: Victor Opusculo  
-E-mail: victor.ventura@uol.com.br
+E-mail: victor.ventura@uol.com.br  
+Portfólio: https://v-opus.dev.br
